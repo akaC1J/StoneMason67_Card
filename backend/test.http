@@ -1,0 +1,8 @@
+### Проверить соединение
+GET http://localhost:5000/
+
+### Отправить POST-запрос с контактами
+POST http://localhost:5000/contact
+Content-Type: application/x-www-form-urlencoded
+
+name=Homer&contact_method=telegram&contact=+7915999199&message=Некоторое сообщение

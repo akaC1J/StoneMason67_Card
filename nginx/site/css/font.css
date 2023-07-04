@@ -1,0 +1,16 @@
+@font-face {
+    font-family: 'UF1';
+    font-weight: normal;
+    font-style: normal;
+    src: url('../font/IdealistSans.ttf') format('truetype');
+}
+
+body {
+    font-family: 'UF1', sans-serif;
+    background-color: #ecd37f;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
