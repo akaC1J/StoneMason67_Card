@@ -8,10 +8,10 @@
 .img2 { background-image: url("../img/main_object/Печи_main.jpg"); }
 
 #nameCompanyLogo {
-    height: 9em;
-    width: 25em;
+    height: 10em;
+    width: 27em;
     padding: 10px;
-    background: url("../img/new_logo/logo_name_withBackground.svg") no-repeat;
+    background: url("../img/new_logo/logoFull_withBackground.svg") no-repeat;
     justify-content: center;
     top: 20px;
     left: 20px;
