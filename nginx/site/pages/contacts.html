@@ -3,10 +3,11 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
+    <link rel="icon" type="image/png" href="../img/new_logo/logo_icon.svg" sizes="50x50">
     <link rel="stylesheet" href="../css/contact.css">
     <link rel="stylesheet" href="../css/common.css">
     <link rel="stylesheet" href="../css/font.css">
-    <title>Contacts</title>
+    <title>Контакты</title>
 </head>
 <body>
 <div id="hamburger">
@@ -20,19 +21,22 @@
 <div class="middle">
     <div class="contacts">
         <p class="main-text">
-            If you would like to explore the idea of working with Milllbrook Construction WA, feel free to get in touch.<br><br>
+            Если вы хотите рассмотреть возможность сотрудничества со строительной компанией "Вольные каменщики 67", свяжитесь с нами.<br><br>
 
-            0432 851 406<br>
-            michael@millbrookconstruction.com.au
+            <b>+7(952)536-18-97</b> - Андрей<br>
+            <b>+7(920)663-76-90</b> - Михаил<br>
+            <b>stonemason67@bk.ru</b>
         </p>
         <div class="social_network">
-            <a href="https://instagram.com/your_profile"><img src="../img/icons/instagram.png" alt="Instagram icon" /></a>
-            <a href="https://vk.com/your_profile"><img src="../img/icons/vk.png" alt="VK icon" /></a>
+            <a href="https://vk.com/stonemason67"><img src="../img/icons/vk.png" alt="VK icon" /></a>
         </div>
     </div>
     <div class="contact_form">
-        <form id="contact_form" action="#" method="post">
-            <input type="text" id="name" name="name" placeholder="Имя"><br>
+        <p class="main-text">
+            Или заполните форму ниже, и мы свяжемся с вами.
+        </p>
+        <form id="contact_form" method="post" action="http://localhost/api/contact">
+            <input type="text" id="name" name="name" placeholder="Имя"  ><br>
             <div class="select-wrapper">
                 <label for="contact_method">Способ связи:</label>
                 <select id="contact_method" name="contact_method" required>
@@ -42,11 +46,13 @@
                     <option value="whatsapp">WhatsApp</option>
                 </select>
             </div>
-            <input type="text" id="contact" placeholder="Email"><br>
+            <!-- Добавьте атрибут name для этого поля ввода -->
+            <input type="text" id="contact" name="contact" placeholder="Email или телефон"><br>
             <span id="contactError" class="error"></span>
             <textarea id="message" name="message" placeholder="Сообщение"></textarea><br>
             <input type="submit" value="Отправить">
         </form>
+        <div id="success_label" style="display: none">Форма успешно отправлена!</div>
     </div>
 </div>
 </body>

@@ -2,7 +2,7 @@
     display: flex;
     justify-content: space-around;
     width: 100%;
-    height: 100vh;
+    height: 50vh;
     align-items: center;
 }
 
@@ -14,16 +14,6 @@
 .contact_form {
     margin-top: 6%; /* Здесь можно указать любое значение отступа, которое вам подходит */
 }
-
-
-.logo {
-
-    width: 115px;
-    height: 115px;
-    background: url('../img/logo/iconLogoWhite.svg') no-repeat;
-    background-size: contain;
-}
-
 .main-text {
     margin-top: 25px;
     text-align: justify;
@@ -78,10 +68,18 @@
     cursor: pointer; /* Курсор-указатель при наведении */
     border: 2px solid black; /* Убрать нижнюю границу для кнопки */
     padding: 10px;
+    transition-duration: 500ms; /* Это позволяет сгладить изменение цвета */
     background: transparent; /* делаем фон кнопки прозрачным */
-
 }
 
+#contact_form input[type="submit"]:hover {
+    background-color: rgb(233, 128, 116); /* Зеленый темнее при наведении */
+}
+
+#contact_form input[type="submit"]:active {
+    transform: scale(0.70); /* Уменьшение размера кнопки на 5% при нажатии */
+    animation: clickAnimation 0.4s forwards;
+}
 .select-wrapper {
     display: flex;
     align-items: center; /* Вертикальное выравнивание содержимого по центру */
@@ -109,6 +107,12 @@
     margin-top: 5px;
     margin-bottom: 15px;
     font-size: 14px;
+}
+
+#success_label {
+    color: rgb(107, 68, 35);
+    font-size: 20px;
+    text-align: center;
 }
 
 

@@ -6,7 +6,7 @@ from telegram.ext import CommandHandler, MessageHandler, CallbackContext, filter
 import redis
 from dotenv import load_dotenv
 
-load_dotenv("../.env")
+load_dotenv("../../.env")
 # создание Redis клиента
 redis_host = os.getenv("REDIS_HOST")
 bot_token = os.getenv("BOT_TOKEN")

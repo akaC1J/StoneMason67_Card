@@ -1,85 +1,21 @@
-/* Images used */
-.img1 { background-image: url("../img/home/1_Печерск_Главная.JPG"); }
-.img2 { background-image: url("../img/home/4_12Объект.JPG"); }
-.img3 { background-image: url("../img/home/2_13Объект.JPG") }
-.img4 { background-image: url("../img/home/3_столбы.JPG"); }
-.img5 { background-image: url("../img/home/5_Печи.JPG"); }
-
-#logo {
-    color: white;
-    /* Replace with your logo */
-    background-image: url('../img/logo/logo_white.svg');
-    background-repeat: no-repeat;
-    background-size: contain;
-    height: 600px; /* Adjust size as needed */
-    width: 600px; /* Adjust size as needed */
-    z-index: 100;
-    position: fixed;
-    top: 30%;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    margin: auto;
-    opacity: 0;
-    transform: scale(0);
-    transition: opacity 1.5s, transform 1.5s;
-}
-
-#fullpage {
-    filter: brightness(90%);
-    transition: filter 1.5s;
-}
-
-#fullpage.dimmed {
-    filter: brightness(50%);
-    transition: filter 1.5s;
-}
-
-#logo.visible {
-    opacity: 1;
-    transform: scale(1);
-}
-
-p.mainParagraph {
-    font-family: 'UF1', serif;
-    font-size: 20px;
-    color: #ecd37f;
+.menu-container {
+    font-family: 'UF1', sans-serif;
+    font-size: xx-large;
     font-weight: bold;
-    text-align: center;
-}
-
-p.mainParagraph {
-    font-family: 'UF1', serif;
-    font-size: 25px;
-    color: #ecd37f;
-    font-weight: bold;
-    text-align: center;
-    margin: 0;
-}
-
-.paragraph-wrapper {
+    color: #e85a47;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    position: absolute;
-    left: 50%;
-    bottom: 20px;
-    transform: translateX(-50%);
-    padding: 3px;
-    background-color: rgba(52, 27, 27, 0.66);
-    width: auto;
-}
-
-p:not(.mainParagraph) {
-    color: #ecd37f;
-    font-size: 20px;
-    font-family: 'UF1', serif;
-    margin: 0;
-    text-align: left;
-    text-decoration: underline;
+    align-items: center;
+    justify-content: center;
+    height: 100vh; /* Высота контейнера, например, 100% видимой высоты */
 }
 
 
 
+.menu-item {
+    margin-bottom: 30px; /* Вертикальный отступ между пунктами меню */
+}
 
-
+.menu-item:hover {
+    color: #b23126 /* Вертикальный отступ между пунктами меню */
+}

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/png" href="img/new_logo/logo_icon.svg" sizes="50x50">
+    <title>Главная</title>
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/font.css">
+    <link rel="stylesheet" href="css/slider.css">
+    <link rel="stylesheet" href="lib/fullpage.js/dist/fullpage.min.css">
+    <script src="lib/fullpage.js/dist/fullpage.js"></script>
+</head>
+<body class="loading">
+<div id="spinner">
+<img id="logo" src="img/new_logo/logo_icon.svg" alt="Logo">
+</div>
+<div id="fullContent">
+    <div id="nameCompanyLogo"></div>
+    <div id="hamburger">
+        <a href="pages/menu.html">
+            <div></div>
+            <div></div>
+            <div></div>
+        </a>
+    </div>
+    <div id="logo_icon" class="hidden"></div>
+    <div id="fullpage" style="height: 100%">
+        <div class="bg-image img1 section">
+        </div>
+        <div class="bg-image img6 section">
+            <div class="paragraph-wrapper">
+                <a href="pages/objects/object_Приют_поколений.html">
+                    <p class="mainParagraph">Приют поколений</p>
+                    <p>Посмотреть подробнее</p>
+                </a>
+            </div>
+        </div>
+        <div class="bg-image img7 section">
+            <div class="paragraph-wrapper">
+                <a href="pages/objects/object_Домашний_оазис.html">
+                    <p class="mainParagraph">Домашний оазис</p>
+                    <p>Посмотреть подробнее</p>
+                </a>
+            </div>
+        </div>
+        <div class="bg-image img2 section">
+            <div class="paragraph-wrapper">
+                <a href="pages/objects/object_печи.html">
+                    <p class="mainParagraph">Тепло Домашнего Очага</p>
+                    <p>Посмотреть подробнее</p>
+                </a>
+            </div>
+        </div>
+        <div class="bg-image img3 section">
+            <div class="paragraph-wrapper">
+                <a href="pages/objects/object_Эстетическая_крепость.html">
+                    <p class="mainParagraph">Эстетическая крепость</p>
+                    <p>Посмотреть подробнее</p>
+                </a>
+            </div>
+        </div>
+        <div class="bg-image img4 section">
+            <div class="paragraph-wrapper">
+                <a href="pages/objects/object_Урбанистический_замок.html">
+                    <p class="mainParagraph">Урбанистический замок</p>
+                    <p>Посмотреть подробнее</p>
+                </a>
+            </div>
+        </div>
+        <div class="bg-image img5 section">
+            <div class="paragraph-wrapper">
+                <a href="pages/objects/object_столбы.html">
+                    <p class="mainParagraph">Столбы Вдохновения</p>
+                    <p>Посмотреть подробнее</p>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="js/common.js"></script>
+<script src="js/slider.js"></script>
+<script>
+    window.onload = function() {
+        document.body.classList.remove('loading');
+    }
+</script>
+</body>
+</html>

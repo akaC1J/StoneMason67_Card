@@ -5,7 +5,7 @@ from dotenv import load_dotenv
 
 app = Flask(__name__)
 
-load_dotenv("../.env")
+load_dotenv("../../.env")
 # создание Redis клиента
 redis_host = os.getenv("REDIS_HOST")
 redis_port = os.getenv("REDIS_PORT")
@@ -19,7 +19,7 @@ def index():
     return "Congratulations, it's a web app!"
 
 
-@app.route('/contact', methods=['POST'])
+@app.route('/api/contact', methods=['POST'])
 def submit_form():
     contact_method = request.form.get('contact_method')
 

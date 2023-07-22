@@ -5,11 +5,11 @@ services:
     command: redis-server --requirepass ${REDIS_PASSWORD}
     ports:
       - "6379:6379"
-    env_file:
-      - backend/.env
 
   bot:
     build: backend/bot
+    env_file:
+      - .env
     depends_on:
       - redis
     environment:
@@ -20,12 +20,15 @@ services:
       - TELEGRAM_ADMIN_PASSWORD=1a
       - BOT_TOKEN=${BOT_TOKEN}
 
+
   app:
     build: backend/app
     ports:
       - "5000:5000"
     depends_on:
       - redis
+    env_file:
+      - .env
     environment:
       - REDIS_HOST=redis
       - REDIS_PORT=${REDIS_PORT}

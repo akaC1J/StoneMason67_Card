@@ -1,31 +1,21 @@
 /* Images used */
-.img2 { background-image: url("../img/home/4_12Объект.JPG"); }
-.img3 { background-image: url("../img/home/2_13Объект.JPG") }
-.img4 { background-image: url("../img/home/3_столбы.JPG"); }
-.img5 { background-image: url("../img/home/5_Печи.JPG"); }
-
-#fullpage {
-    filter: brightness(90%);
-    transition: filter 1.5s;
-}
-
-#fullpage.dimmed {
-    filter: brightness(50%);
-    transition: filter 1.5s;
-}
+.img1 { background-image: url("../img/main_object/1_Печерск_Главная.JPG"); }
+.img2 { background-image: url("../img/main_object/Домашний_оазис_main.JPG") }
+.img3 { background-image: url("../img/main_object/Приют_поколений.JPG"); }
+.img4 { background-image: url("../img/main_object/Столбы_main.jpg"); }
+.img5 { background-image: url("../img/main_object/Урбанистический_замок_main.jpg"); }
+.img6 { background-image: url("../img/main_object/Эстетическая_крепость_main.jpg"); }
+.img7 { background-image: url("../img/main_object/Печи_main.jpg"); }
 
 p.mainParagraph {
-    font-family: 'UF1', serif;
-    font-size: 20px;
     color: #ecd37f;
     font-weight: bold;
     text-align: center;
 }
 
 p.mainParagraph {
-    font-family: 'UF1', serif;
-    font-size: 25px;
-    color: #ecd37f;
+    font-size: 40px;
+    color: #e85a4f;
     font-weight: bold;
     text-align: center;
     margin: 0;
@@ -38,16 +28,23 @@ p.mainParagraph {
     position: absolute;
     left: 20px;
     bottom: 20px;
-
-    padding: 3px;
-    background-color: rgba(52, 27, 27, 0.66);
+    padding: 25px;
+    background-color: rgba(234, 231, 220, 0.80);
+    border: 1px solid  rgba(234, 231, 220, 0.80);
+    border-radius: 15px;
     width: auto;
 }
 
+.paragraph-wrapper:hover {
+    transition-duration: 500ms;
+    background-color: rgba(234, 231, 220, 1);
+    border: 1px solid  rgba(234, 231, 220, 1);
+}
+
+
 p:not(.mainParagraph) {
-    color: #ecd37f;
-    font-size: 20px;
-    font-family: 'UF1', serif;
+    color: #e85a4f;
+    font-size: 23px;
     margin: 0;
     text-align: left;
     text-decoration: underline;
