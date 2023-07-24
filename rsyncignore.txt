@@ -1,0 +1,8 @@
+/backend/venv
+/.git
+/.idea
+/ansible
+secrets
+.gitignore
+docker-compose-locally.yml
+StoneMason67_Card.iml

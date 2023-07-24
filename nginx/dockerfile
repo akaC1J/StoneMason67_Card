@@ -4,5 +4,4 @@ FROM nginx:latest
 # Копируйте свой сайт в контейнер
 COPY site /usr/share/nginx/html
 
-# Копируйте конфигурационный файл NGINX в контейнер
-COPY default.conf /etc/nginx/conf.d/default.conf
+COPY letsencrypt /etc/letsencrypt-cont

@@ -50,7 +50,7 @@ contactForm.addEventListener('submit', function(event) {
 
     if (isValid) {
         const formData = new FormData(contactForm);
-        fetch('http://localhost/api/contact', {
+        fetch('/api/contact', {
             method: 'POST',
             body: formData
         })

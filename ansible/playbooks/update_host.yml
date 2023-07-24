@@ -1,0 +1,12 @@
+---
+- name: Update /etc/hosts file
+  hosts: 178.21.10.44
+  become: yes
+  tasks:
+    - name: Add records to /etc/hosts
+      blockinfile:
+        path: /etc/hosts
+        block: |
+          127.0.0.1 stonemason67.ru
+          127.0.0.1 www.stonemason67.ru
+        state: present
