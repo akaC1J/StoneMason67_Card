@@ -19,6 +19,8 @@ services:
       - TELEGRAM_USER_PASSWORD=1uu
       - TELEGRAM_ADMIN_PASSWORD=1a
       - BOT_TOKEN=${BOT_TOKEN}
+    volumes:
+      - ./backend/bot/data:/bot/data
 
   app:
     build: backend/app
