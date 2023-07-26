@@ -1,4 +1,6 @@
 /backend/venv
+/backend/bot/data/admins.json
+/backend/bot/data/users.json
 /.git
 /.idea
 /ansible
