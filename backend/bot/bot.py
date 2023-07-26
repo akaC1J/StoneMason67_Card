@@ -1,6 +1,9 @@
 import os
 import asyncio
 import threading
+import json
+from json import JSONDecodeError
+
 from telegram import Update, Bot
 from telegram.ext import CommandHandler, MessageHandler, CallbackContext, filters, ApplicationBuilder
 import redis
@@ -18,6 +21,25 @@ users = {}
 admins = {}
 
 
+def save_data():
+    with open('data/users.json', 'w') as f:
+        json.dump(users, f)
+    with open('data/admins.json', 'w') as f:
+        json.dump(admins, f)
+
+
+def load_data():
+    global users, admins
+    try:
+        with open('data/users.json', 'r') as f:
+            users = json.load(f)
+        with open('data/admins.json', 'r') as f:
+            admins = json.load(f)
+    except (FileNotFoundError, JSONDecodeError):
+        users = {}
+        admins = {}
+
+
 async def delete_user(update: Update, context: CallbackContext):
     chat_id = str(update.message.chat_id)
     if chat_id not in admins:
@@ -29,6 +51,7 @@ async def delete_user(update: Update, context: CallbackContext):
         await update.message.reply_text("Невозможно удалить администратора! Обратитесь к разработчику бота")
         return
     del users[delete_chat_id]
+    save_data()
     await update.message.reply_text(f"Пользователь с chatId = {delete_chat_id} удален")
 
 
@@ -46,10 +69,12 @@ async def register_command(update: Update, context: CallbackContext):
     command, password = update.message.text.split(' ', 1)
     if password == os.getenv('TELEGRAM_USER_PASSWORD'):
         users[chat_id] = update.message.from_user.first_name
+        save_data()
         await update.message.reply_text("Регистрация прошла успешно.")
     elif password == os.getenv('TELEGRAM_ADMIN_PASSWORD'):
         users[chat_id] = update.message.from_user.first_name
         admins[chat_id] = update.message.from_user.first_name
+        save_data()
         await update.message.reply_text("Регистрация администратора прошла успешно.")
     else:
         await update.message.reply_text("Неверный пароль.")
@@ -89,6 +114,7 @@ async def process_messages(bot, redis):
 
 
 def main(token=None, redis=None):
+    load_data()
     application = ApplicationBuilder().token(token).build()
     application.add_handler(CommandHandler("register", register_command))
     application.add_handler(CommandHandler("list", list_users))

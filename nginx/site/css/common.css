@@ -8,13 +8,16 @@
     background: url("../img/new_logo/fulllogo.svg") no-repeat;
 }
 #hamburger {
+    font-size: 20px ;
+    font-weight: bold;
+    color: white;
     position: fixed;
     top: 20px;
     right: 20px;
     z-index: 100; /* чтобы меню было поверх остальных элементов */
 }
 
-#hamburger a {
+#hamburger a:not(#titleMenu) {
     display: inline-block;
     width: 30px;
     height: 20px;
@@ -63,7 +66,7 @@
 
 #logo_icon {
     /* Replace with your logo */
-    background-image: url('../img/new_logo/logo_icon.svg');
+    background-image: url('../favicon.svg');
     background-repeat: no-repeat;
     background-size: contain;
     height: 25em; /* Adjust size as needed */
