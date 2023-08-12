@@ -9,3 +9,28 @@ name=Homer&contact_method=telegram&contact=+7915999199&message=Некоторо�
 
 ### test
 GET http://stonemason67.ru/.well-known/acme-challenge/hello.txt
+
+###load object
+POST http://localhost:5000/api/objects/
+Content-Type:  application/json
+
+{
+  "name": "Building 1",
+  "description": "This is a description of building 1.",
+  "index_photo_name": "/path/to/main_photo.jpg",
+  "object_photo_name": "/path/to/pre_main_photo.jpg",
+  "images": [
+    {
+      "path": "/path/to/image1.jpg",
+      "visible": true
+    },
+    {
+      "path": "/path/to/image2.jpg",
+      "visible": false
+    },
+    {
+      "path": "/path/to/image3.jpg",
+      "visible": true
+    }
+  ]
+}

@@ -4,16 +4,17 @@
     top: 45%;
     height: 50vh;
     transform: translateY(-50%);
-
 }
+
 .middle ul {
     font-family: Verdana, sans-serif;
-    font-size: 20px
+    font-size: 20px;
 }
 
 .main-text {
     text-align: justify;
     font-size: 20px;
+    margin-bottom: 20px;  /* добавляем нижний отступ для отделения текста от кнопки */
 }
 
 .social_network {
@@ -53,6 +54,8 @@
     user-select: none;
     -webkit-user-select: none;
     touch-action: manipulation;
+    width: 100%;  /* Делаем кнопку на всю ширину */
+    box-sizing: border-box;  /* Это учтет отступы и рамку в общей ширине кнопки */
 }
 
 .contact-button:hover {
@@ -63,3 +66,20 @@
 .contact-button:focus {
     box-shadow: rgba(0, 0, 0, .3) 2px 8px 4px -6px;
 }
+
+/* Адаптивные стили для мобильных устройств с экраном шириной меньше 768px */
+@media (max-width: 767px) {
+    #hamburger {
+        top: 50px !important;
+        position: absolute !important;
+    }
+    .middle {
+        width: 90%;
+        position: relative;
+        top: 10px; /* увеличиваем отступ сверху, чтобы избежать наложения на #hamburger и #fullLogoCompany */
+        height: fit-content;
+        transform: none;
+        padding: 10px; /* уменьшим отступы по бокам, чтобы текст занимал всю ширину экрана */
+    }
+}
+

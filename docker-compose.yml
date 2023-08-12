@@ -1,5 +1,15 @@
 version: "3.9"
 services:
+
+#  postgres:
+#    image: postgres
+#    volumes:
+#      - ./backend/postgres-data:/var/lib/postgresql/data
+#      - ./backend/app/scripts:/docker-entrypoint-initdb.d
+#    environment:
+#      POSTGRES_PASSWORD: pass
+
+
   redis:
     image: "redis:latest"
     command: redis-server --requirepass ${REDIS_PASSWORD}

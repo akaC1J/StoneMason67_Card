@@ -1,7 +1,10 @@
 import os
-from flask import Flask, request, abort
+
 import redis
 from dotenv import load_dotenv
+from flask import Flask, request, abort
+
+from model import db, ConstructionObject, Photo
 
 app = Flask(__name__)
 
@@ -12,11 +15,46 @@ redis_port = os.getenv("REDIS_PORT")
 redis_password = os.getenv("REDIS_PASSWORD")
 r = redis.Redis(host=redis_host, port=redis_port, password=redis_password)
 
+# создание Postges клиента
+db_user = os.getenv("DB_USER")
+db_password = os.getenv("DB_PASSWORD")
+db_host = os.getenv("DB_HOST")
+db_name = os.getenv("DB_NAME")
+
+app.config['SQLALCHEMY_DATABASE_URI'] = f"postgresql://{db_user}:{db_password}@{db_host}/{db_name}"
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+db.init_app(app)
+
 
 @app.route("/")
 def index():
     print('got it')
     return "Congratulations, it's a web app!"
+
+
+@app.route('/api/objects/', methods=['POST'])
+def add_object():
+    data = request.get_json()
+    new_object = ConstructionObject(
+        name=data['name'],
+        description=data['description'],
+        index_photo_path=data['main_photo_path'],
+        object_photo_path=data['pre_main_photo_path']
+    )
+    db.session.add(new_object)
+
+    for image_data in data['images']:
+        new_image = Photo(
+            path=image_data['path'],
+            object_name=data['name'],
+            visible=image_data['visible']
+        )
+        db.session.add(new_image)
+
+    db.session.commit()
+
+    uploaded_files = request.files.getlist('images')
+    return {"message": "Construction object added successfully"}, 201
 
 
 @app.route('/api/contact', methods=['POST'])

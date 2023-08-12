@@ -115,4 +115,32 @@
     text-align: center;
 }
 
+/* Адаптивные стили для мобильных устройств с экраном шириной меньше 768px */
+@media (max-width: 767px) {
+    #hamburger {
+        top: 50px !important;
+        position: absolute !important;
+    }
+    .middle {
+        width: 90%;
+        display: block;
+        position: relative;
+        top: 10px; /* увеличиваем отступ сверху, чтобы избежать наложения на #hamburger и #fullLogoCompany */
+        height: fit-content;
+        padding: 20px; /* уменьшим отступы по бокам, чтобы текст занимал всю ширину экрана */
+    }
+
+    .contacts, .contact_form {
+        width: 100%;
+
+    }
+
+    #label_contact_method {
+        font-size: 14px;
+    }
+
+    .select-wrapper {
+        gap: 3px; /* Уменьшаем расстояние между label и select */
+    }
+}
 

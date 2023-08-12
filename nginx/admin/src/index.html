@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Админская панель</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Если у вас есть стилевой файл -->
+</head>
+
+<body>
+
+<header>
+    <h1>Админская панель</h1>
+</header>
+
+<div class="container">
+    <nav>
+        <!-- Боковое меню -->
+        <ul>
+            <li><a href="#about-section">О нас</a></li>
+            <li><a href="#contacts-section">Контакты</a></li>
+            <li><a href="#upload-section">Загрузить фотографии объектов</a></li>
+        </ul>
+    </nav>
+    <main>
+        <!-- Раздел "Загрузить фотографии объектов" -->
+        <section id="objects-section">
+            <h2>Объекты</h2>
+
+            <label for="object-select">Выберите объект:</label>
+            <select id="object-select">
+                <!-- Эти значения нужно будет заполнять динамически, например, из вашей БД -->
+                <option value="object1">Объект 1</option>
+                <option value="object2">Объект 2</option>
+            </select>
+
+            <button id="create-object-btn">Создать объект</button>
+            <button id="delete-object-btn">Удалить объект</button>
+
+            <!-- Блок для загрузки информации о новом объекте -->
+            <div id="object-upload" style="display: block;"> <!-- По умолчанию он скрыт -->
+                <h3>Загрузить фотографии объектов</h3>
+                <input type="file" id="image-upload" multiple accept="image/*">
+                <div id="preview"></div>
+                <input type="text" id="object-name" placeholder="Имя объекта">
+                <textarea id="object-description">Описание объекта...</textarea>
+                <label>
+                    главная
+                    <input type="file" id="main-image" accept="image/*">
+                </label>
+                <label>
+                    объекты
+                    <input type="file" name="object-image" accept="image/*">
+                </label>
+                <button id="save-object-btn">Загрузить объект</button>
+            </div>
+
+            <!-- Блок с детальной информацией о выбранном объекте (если нужен) -->
+            <div class="object-details" style="display: none;">
+                <!-- Подробности о выбранном объекте -->
+            </div>
+        </section>
+
+
+        <!-- Раздел "О нас" -->
+        <section id="about-section">
+            <h2>О нас</h2>
+            <textarea id="about-text">Текущий текст о нас...</textarea>
+            <button id="save-about-btn">Сохранить</button>
+        </section>
+
+        <!-- Раздел "Контакты" -->
+        <section id="contacts-section">
+            <h2>Контакты</h2>
+            <textarea id="contacts-text">Текущий текст контактов...</textarea>
+            <button id="save-contacts-btn">Сохранить</button>
+        </section>
+    </main>
+
+</div>
+<footer>Вольные каменщики 67</footer>
+
+<script src="bundle.js"></script>
+
+</body>
+
+</html>

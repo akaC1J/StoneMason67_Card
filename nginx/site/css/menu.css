@@ -7,15 +7,13 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 100vh; /* Высота контейнера, например, 100% видимой высоты */
+    height: 100vh;
 }
 
-
-
 .menu-item {
-    margin-bottom: 30px; /* Вертикальный отступ между пунктами меню */
+    margin-bottom: 30px;
 }
 
 .menu-item:hover {
-    color: #b23126 /* Вертикальный отступ между пунктами меню */
+    color: #b23126;
 }

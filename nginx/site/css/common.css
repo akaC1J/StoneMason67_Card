@@ -119,3 +119,14 @@
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
 }
+
+@media (max-width: 767px) {
+    #fullLogoCompany{
+        position: relative;
+        top: 10px;
+        width: 20em;
+        height: 6em;
+        background-size: contain;
+        background: url("../img/new_logo/favicon.svg") no-repeat;
+    }
+}
