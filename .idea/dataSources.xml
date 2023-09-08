@@ -11,6 +11,7 @@
     <data-source source="LOCAL" name="stonemasonPG" uuid="ec5e4943-9b4a-41ad-a19f-cd2a1486affb">
       <driver-ref>postgresql</driver-ref>
       <synchronize>true</synchronize>
+      <auto-commit>false</auto-commit>
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>
       <jdbc-url>jdbc:postgresql://localhost:5432/postgres</jdbc-url>
       <jdbc-additional-properties>

@@ -17,3 +17,6 @@ synchronize:
 run-playbook:
 	ansible-playbook -i ansible/hosts ansible/playbooks/certbook.yml
 	ansible-playbook -i ansible/hosts ansible/playbooks/update_host.yml
+
+connect:
+	ssh root@178.21.10.44

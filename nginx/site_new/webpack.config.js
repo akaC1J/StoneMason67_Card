@@ -1,13 +1,10 @@
 const path = require('path');
 const HTMLWebpackPlugin = require('html-webpack-plugin');
 const {CleanWebpackPlugin} = require('clean-webpack-plugin');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
+require('copy-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const TerserPlugin = require("terser-webpack-plugin");
 const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
-const ESLintPlugin = require('eslint-webpack-plugin');
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
-
 
 
 const isDev = process.env.NODE_ENV === 'development';
@@ -34,39 +31,34 @@ const cssLoader = (pattern) => {
     return [MiniCssExtractPlugin.loader, 'css-loader', pattern];
 }
 const plugins = () => {
-    const base = [
-        new HTMLWebpackPlugin({
-            template: "./index.html",
-            minify: {
-                collapseWhitespace: isProd
-            }
-        }),
+    const htmlPlugins = (pageNames) => {
+        return pageNames.map(name => new HTMLWebpackPlugin({
+            filename: `${name}.html`,
+            template: `./pages/${name}.html`,
+            chunks: [name]
+        }));
+    }
+    return [
+        ...htmlPlugins(entryNames),
         new CleanWebpackPlugin(),
-        new CopyWebpackPlugin({
-            patterns: [
-                {
-                    from: path.resolve(__dirname, 'src/favicon.ico'),
-                    to: path.resolve(__dirname, 'dist')
-                }
-            ]
-        }),
         new MiniCssExtractPlugin({
             filename: filename('css'),
         })
-    ]
-    if (isProd) {
-        base.push(new BundleAnalyzerPlugin())
-    }
-    return base;
+    ];
 }
 console.log("ISDEV ", isDev);
+const entryNames = ['index', 'menu'];
+const entryObject = (entryNames) => {
+    return entryNames.reduce((acc, name) => {
+        acc[name] = `./pages/${name}.ts`; // или .js, если вы используете JavaScript
+        return acc;
+    }, {});
+}
 module.exports = {
     target: 'web',
     mode: isDev ? 'development' : 'production',
     context: path.resolve(__dirname, 'src'),
-    entry: {
-        main: './index.js',
-    },
+    entry: entryObject(entryNames),
     output: {
         filename: filename('js'),
         path: path.resolve(__dirname, 'dist')
@@ -75,6 +67,9 @@ module.exports = {
         watchFiles: ['src/**/*'],
         hot: isDev,
         port: 4200
+    },
+    resolve: {
+        extensions: [".ts", ".tsx", ".js"]
     },
     devtool: isDev ? 'source-map' : false,
     optimization: optimization(),
@@ -90,10 +85,6 @@ module.exports = {
                 type: "asset/resource"
             },
             {
-                test: /\.csv$/,
-                use: ["csv-loader"]
-            },
-            {
                 test: /\.m?js$/,
                 exclude: /node_modules/,
                 use: {
@@ -106,12 +97,15 @@ module.exports = {
             {
                 test: /\.ts$/,
                 exclude: /node_modules/,
-                use: {
-                    loader: "babel-loader",
-                    options: {
-                        presets: ['@babel/preset-env', '@babel/preset-typescript'],
+                use: [
+                    {
+                        loader: 'ts-loader', // Используем ts-loader вместо babel-loader для .ts файлов
+                        options: {
+                            // Укажите путь к вашему tsconfig.json, если он находится не в корне проекта
+                            configFile: path.resolve(__dirname, './tsconfig.json')
+                        }
                     }
-                }
+                ]
             }
         ]
     }

@@ -1,0 +1,19 @@
+.menu-container {
+    font-family: 'UF1', sans-serif;
+    font-size: xx-large;
+    font-weight: bold;
+    color: #e85a47;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+.menu-item {
+    margin-bottom: 30px;
+}
+
+.menu-item:hover {
+    color: #b23126;
+}

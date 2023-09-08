@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<!--suppress HtmlFormInputWithoutLabel -->
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Контакты / Вольные каменщики 67</title>
+    <meta name="description" content="Вольные каменщики 67 - Контакты.">
+    <link rel="icon" type="image/png" href="../img/new_logo/favicon.svg" sizes="50x50">
+    <link rel="stylesheet" href="../css/contact.css">
+    <link rel="stylesheet" href="../css/common.css">
+    <link rel="stylesheet" href="../css/font.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Контакты</title>
+    <!-- Yandex.Metrika counter -->
+    <script type="text/javascript" >
+        (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+            m[i].l=1*new Date();
+            for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+            k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+        (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+        ym(94422084, "init", {
+            clickmap:true,
+            trackLinks:true,
+            accurateTrackBounce:true,
+            webvisor:true
+        });
+    </script>
+    <noscript><div><img src="https://mc.yandex.ru/watch/94422084" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+    <!-- /Yandex.Metrika counter -->
+</head>
+<body>
+<div id="hamburger">
+    <a id="titleMenu" href="menu.html" style="color: #10355e;">МЕНЮ</a>
+    <a href="menu.html">
+        <div></div>
+        <div></div>
+        <div></div>
+    </a>
+</div>
+<div id="fullLogoCompany"></div>
+<div class="middle">
+    <div class="contacts">
+        <p class="main-text">
+            Если вы хотите рассмотреть возможность сотрудничества со строительной компанией "Вольные каменщики 67", свяжитесь с нами.<br><br>
+
+            <b>+7(952)536-18-97</b> - Андрей<br>
+            <b>+7(920)663-76-90</b> - Михаил<br>
+            <b>stonemason67@bk.ru</b>
+        </p>
+        <div class="social_network">
+            <a href="https://vk.com/stonemason67"><img src="../img/icons/vk.png" alt="VK icon" /></a>
+        </div>
+    </div>
+    <div class="contact_form">
+        <p class="main-text">
+            Или заполните форму ниже, и мы свяжемся с вами.
+        </p>
+        <form id="contact_form" method="post" action="http://localhost/api/contact">
+            <input type="text" id="name" name="name" placeholder="Имя"  ><br>
+            <div class="select-wrapper">
+                <label id='label_contact_method' for="contact_method">Способ связи:</label>
+                <select id="contact_method" name="contact_method" required>
+                    <option value="email">Email</option>
+                    <option value="phone">Телефон</option>
+                    <option value="telegram">Telegram</option>
+                    <option value="whatsapp">WhatsApp</option>
+                </select>
+            </div>
+            <!-- Добавьте атрибут name для этого поля ввода -->
+            <input type="text" id="contact" name="contact" placeholder="Email или телефон"><br>
+            <span id="contactError" class="error"></span>
+            <textarea id="message" name="message" placeholder="Сообщение"></textarea><br>
+            <input type="submit" value="Отправить">
+        </form>
+        <div id="success_label" style="display: none">Форма успешно отправлена!</div>
+    </div>
+</div>
+</body>
+<script src="../js/contact.js"></script>
+</html>

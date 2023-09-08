@@ -2,3 +2,4 @@
 /.env
 /nginx/site/img/
 /secrets
+!/backend/postgres-data/

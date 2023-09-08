@@ -1,4 +1,5 @@
 /backend/venv
+/backend/postgres-data
 /nginx/admin
 /backend/bot/data/admins.json
 /backend/bot/data/users.json
