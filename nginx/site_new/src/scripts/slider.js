@@ -1,11 +1,15 @@
 import fullpage from './fullpage'
-new fullpage('#fullpage', {
-    autoScrolling: true,
-    scrollHorizontally: true,
-    navigation: true,
-    showActiveTooltip: true,
-    scrollingSpeed: 1400
-});
+
+export function createFullPageSlider() {
+    new fullpage('#fullpage', {
+        license: 'gplv3-license',
+        autoScrolling: true,
+        scrollHorizontally: true,
+        navigation: true,
+        showActiveTooltip: true,
+        scrollingSpeed: 1400
+    });
+}
 
 let startX = 0;
 let currentPercentage = 50;  // Изначальное значение

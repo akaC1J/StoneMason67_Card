@@ -1,9 +1,6 @@
 .middle {
     width: 80%;
-    position: absolute;
-    top: 45%;
-    height: 50vh;
-    transform: translateY(-50%);
+    margin: auto;
 }
 
 .middle ul {
@@ -14,7 +11,7 @@
 .middle p {
     text-align: justify;
     font-size: 20px;
-    margin-bottom: 20px;  /* добавляем нижний отступ для отделения текста от кнопки */
+    margin-bottom: 20px; /* добавляем нижний отступ для отделения текста от кнопки */
 }
 
 .social_network {
@@ -54,8 +51,8 @@
     user-select: none;
     -webkit-user-select: none;
     touch-action: manipulation;
-    width: 100%;  /* Делаем кнопку на всю ширину */
-    box-sizing: border-box;  /* Это учтет отступы и рамку в общей ширине кнопки */
+    width: 100%; /* Делаем кнопку на всю ширину */
+    box-sizing: border-box; /* Это учтет отступы и рамку в общей ширине кнопки */
 }
 
 .contact-button:hover {
@@ -73,6 +70,7 @@
         top: 50px !important;
         position: absolute !important;
     }
+
     .middle {
         width: 90%;
         position: relative;

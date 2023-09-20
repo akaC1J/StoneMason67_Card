@@ -1,13 +1,5 @@
 @import "common.css";
 @import "font.css";
-@import "fullpage.css";
-@import "index.css";
-@import "logo_icon_override.css";
 @import "slider.css";
-
-.container {
-    color: aquamarine;
-    font-size: large;
-
-    border: black solid medium;
-}
+@import "fullpage.css";
+@import "logo_icon_override.css";

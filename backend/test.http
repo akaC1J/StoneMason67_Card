@@ -34,3 +34,12 @@ Content-Type:  application/json
     }
   ]
 }
+
+###get all objects
+GET http://localhost:5000/api/objects/
+
+###get object info
+GET http://localhost:5000/api/object_info/2
+
+###get content info
+GET http://localhost:5000/api/content_info/about

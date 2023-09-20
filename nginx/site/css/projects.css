@@ -1,11 +1,4 @@
-/* Images used */
-.img2 { background-image: url("../img/main_object/oazis_main.jpg")}
-.img3 { background-image: url("../img/main_object/priut_main.jpg")}
-.img4 { background-image: url("../img/main_object/stolbi_main.jpg")}
-.img5 { background-image: url("../img/main_object/zamok_main.jpg")}
-.img6 { background-image: url("../img/main_object/krepost_main.jpg")}
-.img7 { background-image: url("../img/main_object/pechi_main.jpg")}
-.img8 { background-image: url("../img/main_object/prochee_main.jpg")}
+
 p.mainParagraph {
     color: #ecd37f;
     font-weight: bold;

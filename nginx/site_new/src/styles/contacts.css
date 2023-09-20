@@ -14,6 +14,7 @@
 .contact_form {
     margin-top: 6%; /* Здесь можно указать любое значение отступа, которое вам подходит */
 }
+
 .main-text {
     margin-top: 25px;
     text-align: justify;
@@ -42,6 +43,7 @@
     outline: none; /* Убрать обводку при фокусе */
     font-size: 16px;
 }
+
 .contact_form select {
     width: 100%;
     border: none;
@@ -56,7 +58,7 @@
     -moz-appearance: none;
 }
 
-.contact_form textarea{
+.contact_form textarea {
     height: 100px;
     resize: vertical;
     min-height: 50px; /* Минимальная высота */
@@ -80,6 +82,7 @@
     transform: scale(0.70); /* Уменьшение размера кнопки на 5% при нажатии */
     animation: clickAnimation 0.4s forwards;
 }
+
 .select-wrapper {
     display: flex;
     align-items: center; /* Вертикальное выравнивание содержимого по центру */
@@ -121,6 +124,7 @@
         top: 50px !important;
         position: absolute !important;
     }
+
     .middle {
         width: 90%;
         display: block;

@@ -1,8 +1,6 @@
-import '../styles/styles.css'
+import '../styles/font.css';
 import '../styles/menu.css'
 import $ from 'jquery'
-import addHeadElement from '../commonHtml/commonHead'
-import '../scripts/common.js'
+import getHeadElement from '../commonHtml/commonHead'
 
-$('.container').text('Hello Stone mason');
-addHeadElement()
+$('head').append(getHeadElement());

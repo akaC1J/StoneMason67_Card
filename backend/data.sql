@@ -22,154 +22,154 @@ VALUES ('about', '<p class="main-text">
     </p>');
 
 INSERT INTO public.content_info (page_id, block_data)
-VALUES ('contacts', e' Если вы хотите рассмотреть возможность сотрудничества со строительной компанией "Вольные каменщики 67", свяжитесь с нами.<br><br>
+VALUES ('contacts', 'Если вы хотите рассмотреть возможность сотрудничества со строительной компанией "Вольные каменщики 67", свяжитесь с нами.<br><br>
 
             <b>+7(952)536-18-97</b> - Андрей<br>
             <b>+7(920)663-76-90</b> - Михаил<br>
             <b>stonemason67@bk.ru</b>');
 
 INSERT INTO public.construction_objects (id, name, description, index_photo_path, object_photo_path)
-VALUES (DEFAULT, 'Мокко Мансарда', null, '/img/main_object/oazis_main.jpg', '/img/main_object/oazis_main.jpg');
+VALUES (1, 'Домашний оазис', null, 'main_object/oazis_main.jpg', 'all_objects/oazis_main.jpg');
 
 INSERT INTO public.construction_objects (id, name, description, index_photo_path, object_photo_path)
-VALUES (DEFAULT, 'Домашний оазис', null, '/img/main_object/priut_main.jpg', '/img/main_object/priut_main.jpg');
+VALUES (2, 'Мокко Мансарда', null, 'main_object/priut_main.jpg', 'all_objects/priut_main.jpg');
 
 INSERT INTO public.construction_objects (id, name, description, index_photo_path, object_photo_path)
-VALUES (DEFAULT, 'Тепло Домашнего Очага', null, '/img/main_object/pechi_main.jpg', '/img/main_object/pechi_main.jpg');
+VALUES (3, 'Тепло Домашнего Очага', null, 'main_object/pechi_main.jpg', 'all_objects/pechi_main.jpg');
 
 INSERT INTO public.construction_objects (id, name, description, index_photo_path, object_photo_path)
-VALUES (DEFAULT, 'Эстетическая крепость', null, '/img/main_object/krepost_main.jpg',
-        '/img/main_object/krepost_main.jpg');
+VALUES (4, 'Эстетическая крепость', null, 'main_object/krepost_main.jpg',
+        '/all_objects/krepost_main.jpg');
 
 INSERT INTO public.construction_objects (id, name, description, index_photo_path, object_photo_path)
-VALUES (DEFAULT, 'Урбанистический замок', null, '/img/main_object/zamok_main.jpg', '/img/main_object/zamok_main.jpg');
+VALUES (5, 'Урбанистический замок', null, 'main_object/zamok_main.jpg', 'all_objects/zamok_main.jpg');
 
 INSERT INTO public.construction_objects (id, name, description, index_photo_path, object_photo_path)
-VALUES (DEFAULT, 'Столбы Вдохновения', null, '/img/main_object/stolbi_main.jpg', '/img/main_object/stolbi_main.jpg');
+VALUES (6, 'Столбы Вдохновения', null, 'main_object/stolbi_main.jpg', 'all_objects/stolbi_main.jpg');
 
 INSERT INTO public.construction_objects (id, name, description, index_photo_path, object_photo_path)
-VALUES (DEFAULT, 'Прочие работы', null, '/img/main_object/prochee_main.jpg', '/img/main_object/prochee_main.jpg');
+VALUES (7, 'Прочие работы', null, 'main_object/prochee_main.jpg', 'all_objects/prochee_main.jpg');
 
 INSERT INTO public.photos (id, path, object_id, visible)
-VALUES (DEFAULT, '/img/objects/krepost/main.jpg', 4, true);
+VALUES (DEFAULT, 'objects/krepost/main.jpg', 4, true);
 
 INSERT INTO public.photos (id, path, object_id, visible)
-VALUES (DEFAULT, '/img/objects/krepost/sub1.jpg', 4, true);
+VALUES (DEFAULT, 'objects/krepost/sub1.jpg', 4, true);
 
 INSERT INTO public.photos (id, path, object_id, visible)
-VALUES (DEFAULT, '/img/objects/krepost/sub2.jpg', 4, true);
+VALUES (DEFAULT, 'objects/krepost/sub2.jpg', 4, true);
 
 INSERT INTO public.photos (id, path, object_id, visible)
-VALUES (DEFAULT, '/img/objects/oazis/main.jpg', 1, true);
+VALUES (DEFAULT, 'objects/oazis/main.jpg', 1, true);
 
 INSERT INTO public.photos (id, path, object_id, visible)
-VALUES (DEFAULT, '/img/objects/oazis/sub1.jpg', 1, true);
+VALUES (DEFAULT, 'objects/oazis/sub1.jpg', 1, true);
 
 INSERT INTO public.photos (id, path, object_id, visible)
-VALUES (DEFAULT, '/img/objects/oazis/sub2.jpg', 1, true);
+VALUES (DEFAULT, 'objects/oazis/sub2.jpg', 1, true);
 
 INSERT INTO public.photos (id, path, object_id, visible)
-VALUES (DEFAULT, '/img/objects/oazis/sub3.jpg', 1, true);
+VALUES (DEFAULT, 'objects/oazis/sub3.jpg', 1, true);
 
 INSERT INTO public.photos (id, path, object_id, visible)
-VALUES (DEFAULT, '/img/objects/oazis/sub4.jpg', 1, true);
+VALUES (DEFAULT, 'objects/oazis/sub4.jpg', 1, true);
 
 INSERT INTO public.photos (id, path, object_id, visible)
-VALUES (DEFAULT, '/img/objects/oazis/sub5.jpg', 1, true);
+VALUES (DEFAULT, 'objects/oazis/sub5.jpg', 1, true);
 
 INSERT INTO public.photos (id, path, object_id, visible)
-VALUES (DEFAULT, '/img/objects/oazis/sub6.jpg', 1, true);
+VALUES (DEFAULT, 'objects/oazis/sub6.jpg', 1, true);
 
 INSERT INTO public.photos (id, path, object_id, visible)
-VALUES (DEFAULT, '/img/objects/oazis/sub7.jpg', 1, true);
+VALUES (DEFAULT, 'objects/oazis/sub7.jpg', 1, true);
 
 INSERT INTO public.photos (id, path, object_id, visible)
-VALUES (DEFAULT, '/img/objects/pechi/main.jpg', 3, true);
+VALUES (DEFAULT, 'objects/pechi/main.jpg', 3, true);
 
 INSERT INTO public.photos (id, path, object_id, visible)
-VALUES (DEFAULT, '/img/objects/pechi/sub1.jpg', 3, true);
+VALUES (DEFAULT, 'objects/pechi/sub1.jpg', 3, true);
 
 INSERT INTO public.photos (id, path, object_id, visible)
-VALUES (DEFAULT, '/img/objects/pechi/sub2.jpg', 3, true);
+VALUES (DEFAULT, 'objects/pechi/sub2.jpg', 3, true);
 
 INSERT INTO public.photos (id, path, object_id, visible)
-VALUES (DEFAULT, '/img/objects/pechi/sub3.jpg', 3, true);
+VALUES (DEFAULT, 'objects/pechi/sub3.jpg', 3, true);
 
 INSERT INTO public.photos (id, path, object_id, visible)
-VALUES (DEFAULT, '/img/objects/pechi/sub4.jpg', 3, true);
+VALUES (DEFAULT, 'objects/pechi/sub4.jpg', 3, true);
 
 INSERT INTO public.photos (id, path, object_id, visible)
-VALUES (DEFAULT, '/img/objects/pechi/sub5.jpg', 3, true);
+VALUES (DEFAULT, 'objects/pechi/sub5.jpg', 3, true);
 
 INSERT INTO public.photos (id, path, object_id, visible)
-VALUES (DEFAULT, '/img/objects/priut/main.jpg', 2, true);
+VALUES (DEFAULT, 'objects/priut/main.jpg', 2, true);
 
 INSERT INTO public.photos (id, path, object_id, visible)
-VALUES (DEFAULT, '/img/objects/priut/sub1.jpg', 2, true);
+VALUES (DEFAULT, 'objects/priut/sub1.jpg', 2, true);
 
 INSERT INTO public.photos (id, path, object_id, visible)
-VALUES (DEFAULT, '/img/objects/priut/sub2.jpg', 2, true);
+VALUES (DEFAULT, 'objects/priut/sub2.jpg', 2, true);
 
 INSERT INTO public.photos (id, path, object_id, visible)
-VALUES (DEFAULT, '/img/objects/priut/sub3.jpg', 2, true);
+VALUES (DEFAULT, 'objects/priut/sub3.jpg', 2, true);
 
 INSERT INTO public.photos (id, path, object_id, visible)
-VALUES (DEFAULT, '/img/objects/priut/sub4.jpg', 2, true);
+VALUES (DEFAULT, 'objects/priut/sub4.jpg', 2, true);
 
 INSERT INTO public.photos (id, path, object_id, visible)
-VALUES (DEFAULT, '/img/objects/priut/sub5.jpg', 2, true);
+VALUES (DEFAULT, 'objects/priut/sub5.jpg', 2, true);
 
 INSERT INTO public.photos (id, path, object_id, visible)
-VALUES (DEFAULT, '/img/objects/priut/sub6.jpg', 2, true);
+VALUES (DEFAULT, 'objects/priut/sub6.jpg', 2, true);
 
 INSERT INTO public.photos (id, path, object_id, visible)
-VALUES (DEFAULT, '/img/objects/priut/sub7.jpg', 2, true);
+VALUES (DEFAULT, 'objects/priut/sub7.jpg', 2, true);
 
 INSERT INTO public.photos (id, path, object_id, visible)
-VALUES (DEFAULT, '/img/objects/priut/sub8.jpg', 2, true);
+VALUES (DEFAULT, 'objects/priut/sub8.jpg', 2, true);
 
 INSERT INTO public.photos (id, path, object_id, visible)
-VALUES (DEFAULT, '/img/objects/prochee/main.jpg', 7, true);
+VALUES (DEFAULT, 'objects/prochee/main.jpg', 7, true);
 
 INSERT INTO public.photos (id, path, object_id, visible)
-VALUES (DEFAULT, '/img/objects/prochee/sub1.jpg', 7, true);
+VALUES (DEFAULT, 'objects/prochee/sub1.jpg', 7, true);
 
 INSERT INTO public.photos (id, path, object_id, visible)
-VALUES (DEFAULT, '/img/objects/prochee/sub2.jpg', 7, true);
+VALUES (DEFAULT, 'objects/prochee/sub2.jpg', 7, true);
 
 INSERT INTO public.photos (id, path, object_id, visible)
-VALUES (DEFAULT, '/img/objects/prochee/sub3.jpg', 7, true);
+VALUES (DEFAULT, 'objects/prochee/sub3.jpg', 7, true);
 
 INSERT INTO public.photos (id, path, object_id, visible)
-VALUES (DEFAULT, '/img/objects/prochee/sub4.jpg', 7, true);
+VALUES (DEFAULT, 'objects/prochee/sub4.jpg', 7, true);
 
 INSERT INTO public.photos (id, path, object_id, visible)
-VALUES (DEFAULT, '/img/objects/prochee/sub5.jpg', 7, true);
+VALUES (DEFAULT, 'objects/prochee/sub5.jpg', 7, true);
 
 INSERT INTO public.photos (id, path, object_id, visible)
-VALUES (DEFAULT, '/img/objects/prochee/sub6.jpg', 7, true);
+VALUES (DEFAULT, 'objects/prochee/sub6.jpg', 7, true);
 
 INSERT INTO public.photos (id, path, object_id, visible)
-VALUES (DEFAULT, '/img/objects/prochee/sub7.jpg', 7, true);
+VALUES (DEFAULT, 'objects/prochee/sub7.jpg', 7, true);
 
 INSERT INTO public.photos (id, path, object_id, visible)
-VALUES (DEFAULT, '/img/objects/zamok/main.jpg', 5, true);
+VALUES (DEFAULT, 'objects/zamok/main.jpg', 5, true);
 
 INSERT INTO public.photos (id, path, object_id, visible)
-VALUES (DEFAULT, '/img/objects/zamok/sub1.jpg', 5, true);
+VALUES (DEFAULT, 'objects/zamok/sub1.jpg', 5, true);
 
 INSERT INTO public.photos (id, path, object_id, visible)
-VALUES (DEFAULT, '/img/objects/zamok/sub2.jpg', 5, true);
+VALUES (DEFAULT, 'objects/zamok/sub2.jpg', 5, true);
 
 INSERT INTO public.photos (id, path, object_id, visible)
-VALUES (DEFAULT, '/img/objects/stolbi/main.jpg', 6, true);
+VALUES (DEFAULT, 'objects/stolbi/main.jpg', 6, true);
 
 INSERT INTO public.photos (id, path, object_id, visible)
-VALUES (DEFAULT, '/img/objects/stolbi/sub1.jpg', 6, true);
+VALUES (DEFAULT, 'objects/stolbi/sub1.jpg', 6, true);
 
 INSERT INTO public.photos (id, path, object_id, visible)
-VALUES (DEFAULT, '/img/objects/stolbi/sub2.jpg', 6, true);
+VALUES (DEFAULT, 'objects/stolbi/sub2.jpg', 6, true);
 
 INSERT INTO public.photos (id, path, object_id, visible)
-VALUES (DEFAULT, '/img/objects/stolbi/sub3.jpg', 6, true);
+VALUES (DEFAULT, 'objects/stolbi/sub3.jpg', 6, true);
 

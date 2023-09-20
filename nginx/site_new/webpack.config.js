@@ -43,11 +43,11 @@ const plugins = () => {
         new CleanWebpackPlugin(),
         new MiniCssExtractPlugin({
             filename: filename('css'),
-        })
+        }),
     ];
 }
 console.log("ISDEV ", isDev);
-const entryNames = ['index', 'menu'];
+const entryNames = ['index', 'menu', 'template_object', 'projects', 'about', 'contacts'];
 const entryObject = (entryNames) => {
     return entryNames.reduce((acc, name) => {
         acc[name] = `./pages/${name}.ts`; // или .js, если вы используете JavaScript
@@ -64,7 +64,10 @@ module.exports = {
         path: path.resolve(__dirname, 'dist')
     },
     devServer: {
-        watchFiles: ['src/**/*'],
+        static: [
+            { directory: path.join(__dirname, 'static_images'), publicPath: '/upload_images' },
+        ],
+        watchFiles: ['src/**/*', 'static_images'],
         hot: isDev,
         port: 4200
     },

@@ -1,10 +1,5 @@
-import $ from 'jquery';
-
- export default function addHeadElement() {
-     const headElement =
-         `<meta name="description" content="Вольные каменщики 67 - предоставляем услуги высокого качества в области
-         строительства и дизайна. Посмотрите наши последние проекты на нашем сайте.">
-    
+export default function getHeadElement() {
+    return `
         <!-- Open Graph Meta-Tags -->
         <meta property="og:title" content="Вольные каменщики 67 - Профессиональное Строительство и Дизайн" />
         <meta property="og:description" content="Вольные каменщики 67 - предоставляем услуги высокого качества в области строительства и дизайна. Посмотрите наши последние проекты на нашем сайте." />
@@ -32,6 +27,5 @@ import $ from 'jquery';
         <noscript><div><img src="https://mc.yandex.ru/watch/94422084" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
         <!-- /Yandex.Metrika counter -->
         <link rel="canonical" href="https://stonemason67.ru/" />`;
-     $('head').append(headElement);
 }
 
