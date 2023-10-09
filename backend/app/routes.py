@@ -4,6 +4,10 @@ import db_service
 
 def init_routes(app):
 
+    @app.route('/', methods=['GET'])
+    def ok():
+        return 'OK', 200
+
     @app.route('/api/objects/', methods=['POST'])
     def add_object_route():
         data = request.get_json()
@@ -24,3 +28,11 @@ def init_routes(app):
     def get_content_info(page_id):
         data = db_service.get_content_info(page_id)
         return data, 200
+
+    @app.after_request
+    def apply_cors(response):
+        response.headers['Access-Control-Allow-Origin'] = '*'
+        response.headers['Access-Control-Allow-Methods'] = 'GET, POST, PUT, DELETE, OPTIONS'
+        response.headers['Access-Control-Allow-Headers'] = 'Content-Type, Authorization, x-ijt'
+        return response
+

@@ -7,7 +7,6 @@ export function getCommonSection(section: FullPageSection, isLinked: boolean = f
                     <p>Посмотреть подробнее</p>
                 </a>
             </div>`;
-
     return `<div class="bg-image section" style="background-image: url(${section.bgimage})">
             <div class="arrow right-arrow"></div>
             <div class="arrow left-arrow"></div>

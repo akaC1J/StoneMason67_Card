@@ -3,16 +3,18 @@ import '../styles/about.css';
 import '../styles/common.css';
 import $ from 'jquery';
 import getHeadElement from '../commonHtml/commonHead';
-import { getMenuDiv } from '../commonHtml/bodyBlocks';
+import {getCommonSection, getMenuDiv} from '../commonHtml/bodyBlocks';
 import {ABOUT_CONTENT} from '../mocks/mocks'
+import {getContentInfo} from "../service/restService";
+import "../scripts/clientRoute.js"
+import {FullPageSection} from "../model/FullPageSection";
 // @ts-ignore
-
-const aboutText
-
+ё
 $('head').append(getHeadElement());
 $('body').append(getMenuDiv());
-$('.middle').prepend(getAboutContent(ABOUT_CONTENT))
-
+getContentInfo('about').then((data: any) => {
+    $('.middle').prepend(getAboutContent(data.block_data))
+})
 function getAboutContent(content: string): string {
     return content;
 }

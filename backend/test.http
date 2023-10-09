@@ -1,5 +1,5 @@
 ### Проверить соединение
-GET http://localhost:5000/
+GET http://localhost:5000
 
 ### Отправить POST-запрос с контактами
 POST http://2a00:f940:2:4:2::2925:5000/api/contact
