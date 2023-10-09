@@ -3,7 +3,6 @@ import '../styles/index.css'
 import $ from 'jquery';
 import '../scripts/common.js';
 import getHeadElement from '../commonHtml/commonHead';
-import {fullPageSectionsArray_MOCK} from '../mocks/mocks';
 import {getCommonSection, getMenuDiv} from '../commonHtml/bodyBlocks';
 import {getAllObjects} from '../service/restService';
 import {FullPageSection} from "../model/FullPageSection";

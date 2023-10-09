@@ -47,7 +47,7 @@ const plugins = () => {
     ];
 }
 console.log("ISDEV ", isDev);
-const entryNames = ['index', 'menu', 'template_object', 'projects', 'about', 'contacts'];
+const entryNames = ['index', 'menu', 'object', 'projects', 'about', 'contacts'];
 const entryObject = (entryNames) => {
     return entryNames.reduce((acc, name) => {
         acc[name] = `./pages/${name}.ts`; // или .js, если вы используете JavaScript

@@ -14,7 +14,6 @@ import {getContentInfo} from "../service/restService";
 
 $('head').append(getHeadElement());
 $('body').append(getMenuDiv());
-$(".contacts .main-text").prepend(getContactContent(CONTACT_CONTENT))
 getContentInfo('contacts').then((data: any) => {
     $(".contacts .main-text").prepend(getContactContent(data.block_data))
 })

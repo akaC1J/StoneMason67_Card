@@ -2,6 +2,6 @@
 FROM nginx:latest
 
 # Копируйте свой сайт в контейнер
-COPY site /usr/share/nginx/html
+COPY site_new/dist /usr/share/nginx/html
 
-COPY letsencrypt /etc/letsencrypt-cont
+#COPY letsencrypt /etc/letsencrypt-cont

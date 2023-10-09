@@ -36,12 +36,15 @@ services:
       - "5000:5000"
     depends_on:
       - redis
+      - postgres
     env_file:
       - .env
     environment:
       - REDIS_HOST=redis
       - REDIS_PORT=${REDIS_PORT}
       - REDIS_PASSWORD=${REDIS_PASSWORD}
+      - DB_HOST=postgres
+
 
   nginx:
     build: nginx
@@ -50,6 +53,6 @@ services:
       - "443:443"
     volumes:
       - ./nginx/data/nginx/locally:/etc/nginx/conf.d
+      - ./nginx/site_new/static_images:/usr/share/nginx/html/static_images
     depends_on:
       - app
-      - bot

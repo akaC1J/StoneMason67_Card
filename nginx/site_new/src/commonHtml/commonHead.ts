@@ -1,5 +1,5 @@
 export default function getHeadElement() {
-    return `
+    return `        
         <!-- Open Graph Meta-Tags -->
         <meta property="og:title" content="Вольные каменщики 67 - Профессиональное Строительство и Дизайн" />
         <meta property="og:description" content="Вольные каменщики 67 - предоставляем услуги высокого качества в области строительства и дизайна. Посмотрите наши последние проекты на нашем сайте." />
@@ -26,6 +26,9 @@ export default function getHeadElement() {
         </script>
         <noscript><div><img src="https://mc.yandex.ru/watch/94422084" style="position:absolute; left:-9999px;" alt="" /></div></noscript>-->
         <!-- /Yandex.Metrika counter -->
-        <link rel="canonical" href="https://stonemason67.ru/" />`;
+        <link rel="canonical" href="https://stonemason67.ru/" />
+        <link rel="icon" href="../static_images/favicon.svg" type="image/svg+xml">
+`;
+
 }
 

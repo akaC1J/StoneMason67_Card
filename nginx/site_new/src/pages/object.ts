@@ -2,10 +2,8 @@ import $, {data} from 'jquery'
 import '../styles/styles.css';
 import '../scripts/common.js'
 import getHeadElement from "../commonHtml/commonHead";
-import {objectMap_MOCK} from "../mocks/mocks";
 import {getCommonSection, getMenuDiv} from "../commonHtml/bodyBlocks";
 import {FullPageSection} from "../model/FullPageSection";
-import {SimpleSection} from "../model/SimpleSection";
 import '../scripts/slider.js'
 // @ts-ignore
 import {createFullPageSlider} from "../scripts/slider";

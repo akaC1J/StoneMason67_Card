@@ -1,9 +1,0 @@
-#logo_icon {
-    background-image: url('../img/new_logo/fulllogo.svg');
-    height: 50em; /* Adjust size as needed */
-    width: 50em;
-}
-
-#fullpage.dimmed {
-    filter: brightness(30%);
-}

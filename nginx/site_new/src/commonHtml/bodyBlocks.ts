@@ -2,7 +2,7 @@ import {FullPageSection} from "../model/FullPageSection";
 
 export function getCommonSection(section: FullPageSection, isLinked: boolean = false) {
     const link = `<div class="paragraph-wrapper">
-                <a href=template_object.html?id=${section.id}>
+                <a href=object.html?id=${section.id}>
                     <p class="mainParagraph">${section.name}</p>
                     <p>Посмотреть подробнее</p>
                 </a>
