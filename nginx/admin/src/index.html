@@ -29,32 +29,46 @@
             <h2>Объекты</h2>
 
             <label for="object-select">Выберите объект:</label>
-            <select id="object-select">
-                <!-- Эти значения нужно будет заполнять динамически, например, из вашей БД -->
-                <option value="object1">Объект 1</option>
-                <option value="object2">Объект 2</option>
-            </select>
+            <select id="object-select"></select>
 
             <button id="create-object-btn">Создать объект</button>
             <button id="delete-object-btn">Удалить объект</button>
 
             <!-- Блок для загрузки информации о новом объекте -->
-            <div id="object-upload" style="display: block;"> <!-- По умолчанию он скрыт -->
+            <div id="object-upload" style="display: block;">
                 <h3>Загрузить фотографии объектов</h3>
-                <input type="file" id="image-upload" multiple accept="image/*">
                 <div id="preview"></div>
+                <!-- ... -->
+                <div class="image-upload-wrapper">
+                    <div class="image-upload">
+                        <p>Фотографии на экране "Домой"</p>
+                        <img id="index-photo" src="" alt="Index Photo" class="preview-image">
+                        <button class="delete-image" style="display: none;">-</button>
+                        <input type="file" id="main-image" class="image-input" accept="image/*">
+                        <label for="main-image" class="add-image">+</label>
+                    </div>
+                    <div class="image-upload">
+                        <p>Фотографии на экране "Объекты</p>
+                        <img id="object-photo" src="" alt="Object Photo" class="preview-image">
+                        <button class="delete-image" style="display: none;">-</button>
+                        <input type="file" id="other-image" class="image-input" accept="image/*">
+                        <label for="other-image" class="add-image">+</label>
+                    </div>
+                    <div class="additional-images-wrapper">
+                        <p>Дополнительные фотографии</p>
+                        <div id="additional-images">
+                            <!-- Здесь будут превью изображений -->
+                        </div>
+                        <input type="file" id="image-upload-input" style="display: none;">
+                        <button id="add-additional-image">+</button>
+                    </div>
+                </div>
                 <input type="text" id="object-name" placeholder="Имя объекта">
-                <textarea id="object-description">Описание объекта...</textarea>
-                <label>
-                    главная
-                    <input type="file" id="main-image" accept="image/*">
-                </label>
-                <label>
-                    объекты
-                    <input type="file" name="object-image" accept="image/*">
-                </label>
+                <!--<textarea id="object-description">Описание объекта...</textarea>-->
                 <button id="save-object-btn">Загрузить объект</button>
             </div>
+
+
 
             <!-- Блок с детальной информацией о выбранном объекте (если нужен) -->
             <div class="object-details" style="display: none;">

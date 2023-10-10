@@ -99,3 +99,72 @@ footer {
     padding: 10px 0;
     width: 100%;
 }
+
+
+.image-upload-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: normal;
+}
+
+.image-upload {
+    position: relative;
+    width: 250px; /* Увеличиваем размер */
+    border: 1px solid #ddd;
+    margin-bottom: 50px; /* отступ снизу, чтобы элементы не слипались */
+}
+
+/* добавлено: стиль для параграфа в .image-upload */
+.image-upload p {
+    margin: 5px 0;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.preview-image {
+    width: 100%;
+    height: 100%;
+}
+
+.image-input {
+    display: none;
+}
+
+.add-image, .delete-image {
+    position: absolute;
+    background-color: #f00;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+}
+
+.add-image {
+    bottom: 0;
+    right: 0;
+}
+
+.delete-image {
+    top: 0;
+    right: 0;
+}
+
+.additional-images-wrapper {
+    margin-top: 20px;
+}
+
+.additional-image-preview {
+    position: relative;
+    width: 200px;  /* Уменьшаем размер превью */
+    margin-right: 10px;
+    display: inline-block;
+}
+
+.add-additional-image {
+    background-color: #4CAF50;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    padding: 10px 20px;
+}

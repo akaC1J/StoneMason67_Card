@@ -34,7 +34,7 @@ const plugins = () => {
     const htmlPlugins = (pageNames) => {
         return pageNames.map(name => new HTMLWebpackPlugin({
             filename: `${name}.html`,
-            template: `./pages/${name}.html`,
+            template: `./${name}.html`,
             chunks: [name]
         }));
     }
@@ -50,7 +50,7 @@ console.log("ISDEV ", isDev);
 const entryNames = ['index'];
 const entryObject = (entryNames) => {
     return entryNames.reduce((acc, name) => {
-        acc[name] = `${name}.ts`; // или .js, если вы используете JavaScript
+        acc[name] = `./${name}.ts`; // или .js, если вы используете JavaScript
         return acc;
     }, {});
 }
