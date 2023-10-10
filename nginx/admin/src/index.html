@@ -18,9 +18,12 @@
     <nav>
         <!-- Боковое меню -->
         <ul>
+            <li><a href="#objects-section">Загрузить фотографии объектов</a></li>
             <li><a href="#about-section">О нас</a></li>
             <li><a href="#contacts-section">Контакты</a></li>
-            <li><a href="#upload-section">Загрузить фотографии объектов</a></li>
+            <li><a href="#priority-section">Порядок</a></li>
+
+
         </ul>
     </nav>
     <main>
@@ -65,7 +68,7 @@
                 </div>
                 <input type="text" id="object-name" placeholder="Имя объекта">
                 <!--<textarea id="object-description">Описание объекта...</textarea>-->
-                <button id="save-object-btn">Загрузить объект</button>
+                <button id="save-object-btn">Сохранить изменения</button>
             </div>
 
 
@@ -89,6 +92,14 @@
             <h2>Контакты</h2>
             <textarea id="contacts-text">Текущий текст контактов...</textarea>
             <button id="save-contacts-btn">Сохранить</button>
+        </section>
+
+        <section id="priority-section">
+            <h2>Порядок объектов</h2>
+            <table id="objects-table">
+                <!-- Здесь будут строки таблицы, генерируемые динамически -->
+            </table>
+            <button id="save-priority-btn">Сохранить</button>
         </section>
     </main>
 

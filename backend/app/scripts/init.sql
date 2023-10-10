@@ -4,12 +4,14 @@ CREATE TABLE IF NOT EXISTS  content_info
     block_data TEXT
 );
 
-CREATE TABLE IF NOT EXISTS  construction_objects
+CREATE TABLE IF NOT EXISTS construction_objects
 (   id SERIAL PRIMARY KEY,
-    name              VARCHAR(255),
-    description       TEXT,
-    index_photo_path   TEXT,
-    object_photo_path TEXT
+    name VARCHAR(255),
+    description TEXT,
+    index_photo_path TEXT,
+    object_photo_path TEXT,
+    index_priority INTEGER default -1,
+    object_priority INTEGER default -1
 );
 
 CREATE TABLE IF NOT EXISTS photos

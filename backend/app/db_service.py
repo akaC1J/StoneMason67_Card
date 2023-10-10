@@ -8,6 +8,7 @@ def add_object_to_db(data):
 GET_FROM_CONSTRUCTION_OBJECTS_QUERY = 'select * from public.construction_objects'
 GET_OBJECT_INFO = 'select * from public.photos where object_id=%s'
 GET_CONTENT_INFO = 'select * from public.content_info where page_id=%s'
+GET_ALL_PRIORITY = 'select id, name, index_priority, object_priority from public.construction_objects order by index_priority'
 
 
 def get_list_objects():
@@ -15,7 +16,7 @@ def get_list_objects():
     objects_list = []  # создаём пустой список, чтобы хранить словари
 
     for row in results:
-        id, name, description, index_photo_path, object_photo_path = row
+        id, name, description, index_photo_path, object_photo_path, *_ = row
         print(
             f"Получен результат запроса: id: {id}, name: {name}, description: {description}, "
             f"index_photo_path: {index_photo_path}, object_photo_path: {object_photo_path}")
@@ -68,3 +69,23 @@ def get_content_info(page_id):
         }
 
     return content_dict  # возвращаем список словарей
+
+
+def get_all_priorities():
+    results = database_engine.fetch_all(GET_ALL_PRIORITY)
+    priorities_list = []
+
+    for row in results:
+        id, name, index_priority, object_priority = row
+        print(
+            f"Получен результат запроса: id: {id}, name: {name}, index_priority: {index_priority}, object_priority: {object_priority}")
+
+        priority_dict = {
+            'id': id,
+            'name': name,
+            'index_priority': index_priority,
+            'object_priority': object_priority
+        }
+        priorities_list.append(priority_dict)
+
+    return priorities_list

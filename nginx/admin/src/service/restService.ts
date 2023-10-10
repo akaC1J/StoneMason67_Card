@@ -18,6 +18,12 @@ export async function getContentInfo(pageId: string): Promise<any> {
     const data = await response.json();
     return data;
 }
+
+export async function getAllPriority(): Promise<any> {
+    const response = await fetch(`http://localhost:5000/api/priority`);
+    const data = await response.json();
+    return data;
+}
 //
 // // Пример использования
 // getAllObjects().then(data => console.log(data));

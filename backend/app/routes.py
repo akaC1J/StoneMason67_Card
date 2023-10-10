@@ -29,6 +29,11 @@ def init_routes(app):
         data = db_service.get_content_info(page_id)
         return data, 200
 
+    @app.route(f'/api/priority/', methods=['GET'])
+    def get_all_priority():
+        data = db_service.get_all_priorities()
+        return data, 200
+
     @app.after_request
     def apply_cors(response):
         response.headers['Access-Control-Allow-Origin'] = '*'
