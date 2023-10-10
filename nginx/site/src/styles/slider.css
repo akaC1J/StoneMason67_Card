@@ -1,0 +1,61 @@
+.bg-image {
+    /* Full height */
+    height: 100%;
+
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+#fp-nav ul li a span,
+.fp-slidesNav ul li a span {
+    background: #e85a4f !important;
+}
+
+
+@media (max-width: 767px) {
+    .bg-image {
+        transition: background-position 30s linear; /* Плавное движение фона */
+    }
+
+    /* Стили для стрелок */
+    .arrow {
+        width: 20px;
+        height: 20px;
+        position: absolute;
+        top: 20%;
+        transform: translateY(-50%);
+        background-color: #e85a4f;
+        opacity: 0.9;
+    }
+
+    .left-arrow {
+        right: 20px;
+        clip-path: polygon(100% 50%, 0 100%, 0 0);
+    }
+
+    .right-arrow {
+        left: 20px;
+        clip-path: polygon(0 50%, 100% 100%, 100% 0);
+    }
+
+    /* Анимация для пульсации стрелок */
+    @keyframes pulse {
+        0% {
+            transform: scale(1);
+        }
+        50% {
+            transform: scale(1.5);
+        }
+        100% {
+            transform: scale(1);
+        }
+    }
+
+    /* Применяем анимацию к стрелкам при загрузке страницы */
+    .arrow {
+        animation: pulse 1s infinite; /* Продолжительность и бесконечный цикл */
+    }
+}
+
