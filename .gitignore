@@ -3,4 +3,4 @@
 /nginx/site/img/
 /secrets
 !/backend/postgres-data/
-/nginx/site_new/static_images/
+/nginx/site/static_images/

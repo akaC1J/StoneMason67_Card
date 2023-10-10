@@ -1,14 +1,13 @@
 {
-  "name": "webpack_course",
+  "name": "admin_stone_mason",
   "version": "1.0.0",
-  "description": "webpack course descr",
+  "description": "admin_stone_mason frontend",
   "private": true,
   "scripts": {
     "dev": "cross-env NODE_ENV=development webpack --mode development",
     "build": "cross-env NODE_ENV=production webpack --mode production",
     "watch": "cross-env NODE_ENV=development webpack --mode development --watch",
-    "start": "cross-env NODE_ENV=development webpack server --mode development --open --hot",
-    "stats": "webpack --json > stats.json && webpack-bundle-analyzer stats.json"
+    "start": "cross-env NODE_ENV=development webpack server --mode development --open"
   },
   "browserslist": "> 0.25%, not dead",
   "keywords": [
@@ -20,36 +19,30 @@
   "license": "ISC",
   "devDependencies": {
     "@babel/core": "^7.22.11",
-    "@babel/eslint-parser": "^7.22.11",
     "@babel/preset-env": "^7.22.14",
-    "@babel/preset-typescript": "^7.22.11",
+    "@types/jquery": "^3.5.17",
     "babel-loader": "^9.1.3",
     "clean-webpack-plugin": "^4.0.0",
     "copy-webpack-plugin": "^11.0.0",
     "cross-env": "^7.0.3",
     "css-loader": "^6.8.1",
     "css-minimizer-webpack-plugin": "^5.0.1",
-    "csv-loader": "^3.0.5",
-    "file-loader": "^6.2.0",
     "html-webpack-plugin": "^5.5.3",
-    "less": "^4.2.0",
-    "less-loader": "^11.1.3",
     "mini-css-extract-plugin": "^2.7.6",
-    "node-sass": "^9.0.0",
-    "papaparse": "^5.4.1",
-    "sass-loader": "^13.3.2",
-    "style-loader": "^3.3.3",
     "terser-webpack-plugin": "^5.3.9",
+    "ts-loader": "^9.4.4",
+    "typescript": "^5.2.2",
     "webpack": "^5.88.2",
     "webpack-bundle-analyzer": "^4.9.1",
     "webpack-cli": "^5.1.4",
-    "webpack-dev-server": "^4.15.1",
-    "xml-loader": "^1.2.1"
+    "webpack-dev-server": "^4.15.1"
   },
   "dependencies": {
     "@babel/polyfill": "^7.12.1",
+    "director": "^1.2.8",
     "jquery": "^3.7.1",
     "lodash": "^4.17.21",
-    "normalize.css": "^8.0.1"
+    "normalize.css": "^8.0.1",
+    "page": "^1.11.6"
   }
 }

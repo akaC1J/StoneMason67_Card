@@ -53,6 +53,6 @@ services:
       - "443:443"
     volumes:
       - ./nginx/data/nginx/locally:/etc/nginx/conf.d
-      - ./nginx/site_new/static_images:/usr/share/nginx/html/static_images
+      - ./nginx/site/static_images:/usr/share/nginx/html/static_images
     depends_on:
       - app
