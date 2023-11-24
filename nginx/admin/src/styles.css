@@ -21,6 +21,7 @@ header {
 }
 
 nav {
+    top: 0;
     flex-shrink: 0;
     width: 200px;
     background-color: #333;
@@ -28,15 +29,19 @@ nav {
 }
 
 nav ul {
+    position: sticky;
+    top: 15px;
     list-style-type: none;
     padding: 0;
 }
 
 nav ul li {
+    display: block;
     margin-bottom: 10px;
 }
 
 nav a {
+
     color: #fff;
     text-decoration: none;
     padding: 10px 20px;
@@ -167,4 +172,17 @@ footer {
     border-radius: 4px;
     cursor: pointer;
     padding: 10px 20px;
+}
+
+.inline-table {
+    margin: 40px;
+    display: inline-block;
+    vertical-align: top;  /* Выравнивание по верхнему краю, если таблицы разной высоты */
+}
+
+.inline-table td {
+    border: 1px solid lightgrey;  /* рамка вокруг ячеек */
+
+    text-align: center;  /* выравнивание текста по центру */
+    padding: 8px;  /* внутренние отступы для ячеек, чтобы текст не "прилипал" к рамкам */
 }

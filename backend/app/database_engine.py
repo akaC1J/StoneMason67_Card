@@ -1,9 +1,6 @@
 import os
 
 import psycopg2
-from dotenv import load_dotenv
-
-load_dotenv("../../.env")
 
 
 def _get_db_conn():
@@ -24,15 +21,26 @@ def _get_db_conn():
 
 
 def execute_sql(sql, params=None):
-    conn = _get_db_conn();
+    conn = _get_db_conn()
     cursor = conn.cursor()
-    if params:
-        cursor.execute(sql, params)
-    else:
-        cursor.execute(sql)
-    conn.commit()
-    cursor.close()
-    conn.close()
+    try:
+        if params:
+            cursor.execute(sql, params)
+        else:
+            cursor.execute(sql)
+
+        # Если SQL-запрос должен возвращать значение, например, после вставки
+        if "returning" in sql.lower():
+            inserted_id = cursor.fetchone()[0]
+            conn.commit()
+            return inserted_id
+        else:
+            conn.commit()
+
+    finally:
+        cursor.close()
+        conn.close()
+
 
 
 def fetch_one(sql, params=None):
@@ -46,6 +54,15 @@ def fetch_one(sql, params=None):
     cursor.close()
     conn.close()
     return result
+
+
+def execute_many_sql(sql, params_list=None):
+    conn = _get_db_conn()
+    cursor = conn.cursor()
+    cursor.executemany(sql, params_list)
+    conn.commit()
+    cursor.close()
+    conn.close()
 
 
 def fetch_all(sql, params=None):

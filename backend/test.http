@@ -42,4 +42,7 @@ GET http://localhost:5000/api/objects/
 GET http://localhost:5000/api/object_info/2
 
 ###get content info
-GET http://localhost:5000/api/content_info/about
+GET http://localhost:5000/api/content_info/
+
+###Main request
+POST http://localhost:5000/api/upload_main_data

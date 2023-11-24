@@ -3,18 +3,24 @@ import 'jquery-ui-dist/jquery-ui';
 import $ from 'jquery';
 import {getAllObjects, getAllPriority, getContentInfo, getObjectInfo} from "./service/restService";
 import './some_script.js'
+import './saveButtonHandlers'
 
+let BASE_IMG_URL: string = '../../static_images/'
 
-getAllObjects().then(data => {
-    let options: OptionType[] = [];
-    data.forEach((newOption: OptionType) => {
-        options.push(newOption);
+updateMainInfo()
+
+export function updateMainInfo(){
+    getAllObjects().then(data => {
+        let options: OptionType[] = [];
+        data.forEach((newOption: OptionType) => {
+            options.push(newOption);
+        })
+        fillSelect(options);
+
+        // Запускаем событие change для object-select
+        $('#object-select').trigger('change');
     })
-    fillSelect(options);
-
-    // Запускаем событие change для object-select
-    $('#object-select').trigger('change');
-})
+}
 
 
 
@@ -46,23 +52,31 @@ $('#object-select').on('change',function() {
         fillSelect(options);
         $('#object-select').val(selectedOption.val());
 
-        let base_path_img: string = '../../static_images/'
+
         const description = selectedOption.data('description');
-        const indexPhotoPath = base_path_img  + selectedOption.data('index-photo-path');
-        const objectPhotoPath = base_path_img + selectedOption.data('object-photo-path');
+
+        if (selectedOption.data('index-photo-path')) {
+            const indexPhotoPath = BASE_IMG_URL  + selectedOption.data('index-photo-path');
+            $('#index-photo').attr('src', indexPhotoPath);
+            $('label[for="index-image"]').hide();
+        }
+
+        if (selectedOption.data('object-photo-path')) {
+            const objectPhotoPath = BASE_IMG_URL + selectedOption.data('object-photo-path');
+            $('#object-photo').attr('src', objectPhotoPath);
+            $('label[for="other-image"]').hide();
+        }
 
         // Теперь вы можете использовать description, indexPhotoPath и objectPhotoPath для обновления других полей.
         $('#object-name').val(selectedOption.text());
         $('#object-description').val(description);
 
-        $('#index-photo').attr('src', indexPhotoPath);
-        $('#object-photo').attr('src', objectPhotoPath);
         getObjectInfo(selectedOption.val() as number).then((data: any) => {
             // Очистка контейнера дополнительных изображений
             $('#additional-images').empty();
 
             data.forEach(el => {
-                let objImgPath = base_path_img + el.path;
+                let objImgPath = BASE_IMG_URL + el.path;
 
                 // Создаем обертку для изображения и кнопки
                 const imageWrapper = $('<div/>', {
@@ -71,7 +85,8 @@ $('#object-select').on('change',function() {
 
                 const newImagePreview = $('<img/>', {
                     src: objImgPath,
-                    alt: 'Additional Image'
+                    alt: 'Additional Image',
+                    'data-id': el.id
                 }).css({
                     width: '100%',  // чтобы изображение заполняло всю ширину обертки
                     height: '100%'
@@ -85,6 +100,9 @@ $('#object-select').on('change',function() {
                 deleteButton.on('click', function() {
                     // Удаляем обертку при клике
                     imageWrapper.remove();
+                    let imageId = newImagePreview.data('id');
+                    setToRemoveIdPhoto.add(imageId);
+
                 });
 
                 // Добавляем изображение и кнопку в обертку, а обертку в DOM
@@ -103,10 +121,17 @@ $('#add-additional-image').on('click', function() {
     $('#image-upload-input').click();
 });
 $("#additional-images").sortable();
+
+export let setToRemoveIdPhoto = new Set();
+// Этот набор будет хранить все выбранные файлы
+export const selectedFiles = new Set();
 $('#image-upload-input').on('change', function() {
     const file = (this as HTMLInputElement).files?.[0];
 
     if (file) {
+
+        selectedFiles.add(file); // Сохраняем файл в набор
+
         const reader = new FileReader();
 
         reader.onload = function(e) {
@@ -132,6 +157,7 @@ $('#image-upload-input').on('change', function() {
 
                 deleteButton.on('click', function() {
                     imageWrapper.remove();
+                    selectedFiles.delete(file);
                 });
 
                 imageWrapper.append(newImagePreview, deleteButton);
@@ -232,17 +258,44 @@ $('#delete-object-btn').on('click', function () {
 
 
 getAllPriority().then(data => {
-    const $table: any = $('#objects-table');
-    $table.empty(); // Очищаем таблицу перед заполнением
+    const $table_index: any = $('#objects-table-index');
+    const $table_objects: any = $('#objects-table-objects');
+    $table_index.empty(); // Очищаем таблицу перед заполнением
+    $table_objects.empty(); // Очищаем таблицу перед заполнением
+    $table_index.append(`<tr>
+                    <td><b>Имя</b></td>
+                    <td><b>"Домой"</b></td>
+                </tr>`)
+    $table_objects.append(`<tr>
+                    <td><b>Имя</b></td>
+                    <td><b>"Объекты"</b></td>
+                </tr>`)
     data.forEach(object => {
-        $table.append(`
-            <tr data-id="${object.id}">
-                <td>${object.name}</td>
-                <td><input type="number" value="${object.index_priority}" class="index-priority" min="1" max="${data.length}"></td>
-                <td><input type="number" value="${object.object_priority}" class="object-priority" min="1" max="${data.length}"></td>
-            </tr>
-        `);
+        $table_index.append(`
+        <tr data-id="${object.id}">
+            <td>${object.name}</td>
+            <td><label class="index-priority">${object.index_priority}</label></td>
+        </tr>
+    `);
+        $table_objects.append(`
+        <tr data-id="${object.id}">
+            <td>${object.name}</td>
+            <td><label class="object-priority">${object.object_priority}</label></td>
+        </tr>
+    `);
     });
+
+    $(".inline-table").sortable({
+        items: "tr:not(:first-child)",
+        update: function(event, ui) {
+            // Пересчет приоритетов после каждого перетаскивания
+            $(this).find('tr:not(:first-child)').each(function(index) {
+                // Начинаем с 1, так как индексация в JavaScript начинается с 0
+                $(this).find('label').text(index + 1);
+            });
+        }
+    }).disableSelection();
+
 })
 
 $('#objects-table').on('change', 'input.index-priority, input.object-priority', function() {
@@ -251,5 +304,3 @@ $('#objects-table').on('change', 'input.index-priority, input.object-priority', 
     const indexPriority = $row.find('input.index-priority').val();
     const objectPriority = $row.find('input.object-priority').val();
 });
-
-

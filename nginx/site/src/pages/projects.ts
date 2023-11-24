@@ -20,7 +20,7 @@ getAllObjects().then(data => {
         let id: number = json.id;
         let name: string = json.name;
         let descr: string = json.description;
-        const pathUploadImages = '../static_images/'
+        const pathUploadImages = '../../static_images/'
         let object_photo_path = pathUploadImages + json.object_photo_path;
         return new FullPageSection(id, object_photo_path, name, descr);
     }

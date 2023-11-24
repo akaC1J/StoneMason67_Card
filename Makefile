@@ -21,7 +21,7 @@ run-playbook:
 connect:
 	ssh root@178.21.10.44
 
-start_server_db_dev:
+db_start:
 	docker-compose -f docker-compose-locally.yml up postgres -d
 
 start_locally:

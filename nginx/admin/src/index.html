@@ -2,10 +2,12 @@
 <html lang="ru">
 
 <head>
+    <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Админская панель</title>
-    <link rel="stylesheet" href="styles.css"> <!-- Если у вас есть стилевой файл -->
 </head>
 
 <body>
@@ -47,8 +49,8 @@
                         <p>Фотографии на экране "Домой"</p>
                         <img id="index-photo" src="" alt="Index Photo" class="preview-image">
                         <button class="delete-image" style="display: none;">-</button>
-                        <input type="file" id="main-image" class="image-input" accept="image/*">
-                        <label for="main-image" class="add-image">+</label>
+                        <input type="file" id="index-image" class="image-input" accept="image/*">
+                        <label for="index-image" class="add-image">+</label>
                     </div>
                     <div class="image-upload">
                         <p>Фотографии на экране "Объекты</p>
@@ -70,8 +72,6 @@
                 <!--<textarea id="object-description">Описание объекта...</textarea>-->
                 <button id="save-object-btn">Сохранить изменения</button>
             </div>
-
-
 
             <!-- Блок с детальной информацией о выбранном объекте (если нужен) -->
             <div class="object-details" style="display: none;">
@@ -96,18 +96,16 @@
 
         <section id="priority-section">
             <h2>Порядок объектов</h2>
-            <table id="objects-table">
-                <!-- Здесь будут строки таблицы, генерируемые динамически -->
+            <table id="objects-table-index" class="inline-table">
             </table>
-            <button id="save-priority-btn">Сохранить</button>
+            <table id="objects-table-objects" class="inline-table">
+            </table>
+            <button id="save-priority-btn" style="display: block">Сохранить</button>
         </section>
     </main>
 
 </div>
 <footer>Вольные каменщики 67</footer>
-
-<script src="bundle.js"></script>
-
 </body>
 
 </html>

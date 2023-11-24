@@ -18,7 +18,7 @@ getAllObjects().then(data => {
         let id: number = json.id;
         let name: string = json.name;
         let descr: string = json.description;
-        const pathUploadImages = '../static_images/'
+        const pathUploadImages = '../../static_images/'
         let index_photo_path = pathUploadImages + json.index_photo_path;
         return new FullPageSection(id, index_photo_path, name, descr);
     }
