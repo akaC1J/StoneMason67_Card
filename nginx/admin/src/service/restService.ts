@@ -12,6 +12,14 @@ export async function getObjectInfo(objectId: number): Promise<any> {
     return data;
 }
 
+export async function deleteObjectInfo(objectId: number): Promise<any> {
+    const response = await fetch(`http://localhost:5000/api/object_info/${objectId}` , {
+        method: 'DELETE'
+    });
+    const data = await response.json();
+    return data;
+}
+
 // Функция для получения информации о контенте по page_id
 export async function getContentInfo(pageId: string): Promise<any> {
     const response = await fetch(`http://localhost:5000/api/content_info/${pageId}`);

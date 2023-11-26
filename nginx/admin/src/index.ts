@@ -1,7 +1,7 @@
 import './styles.css';
 import 'jquery-ui-dist/jquery-ui';
 import $ from 'jquery';
-import {getAllObjects, getAllPriority, getContentInfo, getObjectInfo} from "./service/restService";
+import {deleteObjectInfo, getAllObjects, getAllPriority, getContentInfo, getObjectInfo} from "./service/restService";
 import './some_script.js'
 import './saveButtonHandlers'
 
@@ -279,25 +279,18 @@ $('#delete-object-btn').on('click', function () {
     if (isConfirmed) {
         // Получаем ID выбранного объекта
         const selectedObjectId = $('#object-select').val();
+        deleteObjectInfo(selectedObjectId).finally(() =>  // Затем обновите список объектов
+            getAllObjects().then(data => {
+                let options = [];
+                data.forEach((newOption) => {
+                    options.push(newOption);
+                });
 
-        // Выполните запрос на удаление объекта на сервере
-        // ...
+                fillSelect(options);
+                fillAddImgSelect(options )
 
-        // Затем обновите список объектов
-        getAllObjects().then(data => {
-            let options = [];
-            data.forEach((newOption) => {
-                options.push(newOption);
-            });
-
-            fillSelect(options);
-
-            // Если вы хотите обновить интерфейс пользователя или скрыть определенные элементы, вы можете сделать это здесь
-            // Например, сбросить поля формы или обновить изображения
-            // ...
-
-            alert('Объект был удален');
-        });
+                alert('Объект был удален');
+            }));
     }
 });
 
