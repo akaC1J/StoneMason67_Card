@@ -32,6 +32,12 @@ UPDATE_PRIORITY_QUERY = '''
     WHERE id = %s;
 '''
 
+UPDATE_PRIORITY_IMAGES_QUERY = '''
+    UPDATE public.photos
+    SET priority = %s
+    WHERE id = %s;
+'''
+
 UPDATE_CONTENT_INFO = '''
     UPDATE public.content_info
     SET block_data = %s
@@ -147,6 +153,10 @@ def get_all_priorities():
 def set_priority(data):
     update_data = [(item["index_priority"], item["object_priority"], item["id"]) for item in data]
     database_engine.execute_many_sql(UPDATE_PRIORITY_QUERY, update_data)
+
+def set_priority_images(data):
+    update_data = [(item["priority"], item["id"]) for item in data]
+    database_engine.execute_many_sql(UPDATE_PRIORITY_IMAGES_QUERY, update_data)
 
 
 def set_block_data(page_id, block_data):

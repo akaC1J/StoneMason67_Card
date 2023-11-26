@@ -36,6 +36,20 @@ def init_routes(app):
         data = db_service.get_content_info(page_id)
         return data, 200
 
+    @app.route(f'/api/priority_images/', methods=['POST'])
+    def set_priority_images():
+        data = request.get_json()
+        if any(not all(key in el for key in ["id", "priority"]) for el in data):
+            return ({"error": "Bad Request", "message": "Missing required fields"}), 400
+        try:
+            db_service.set_priority_images(data)
+        except Exception as e:
+            print(str(e))
+            return ({"error": "Internal Server Error"}), 500
+
+        return ({"message": "Success"}), 200
+
+
     @app.route(f'/api/priority/', methods=['GET'])
     def get_all_priority():
         data = db_service.get_all_priorities()
