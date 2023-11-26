@@ -19,6 +19,8 @@ CREATE TABLE IF NOT EXISTS photos
     id          SERIAL PRIMARY KEY,
     path        TEXT,
     object_id   INTEGER,
+    priority INTEGER default -1,
     visible     BOOLEAN DEFAULT FALSE,
     FOREIGN KEY (object_id) REFERENCES construction_objects (id) ON DELETE CASCADE
 );
+

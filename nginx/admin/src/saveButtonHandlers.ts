@@ -1,5 +1,5 @@
 import $ from 'jquery';
-import {sendFormData, setContentInfo, setPriority} from "./service/restService";
+import {sendFormData, setContentInfo, setImgPriority, setPriority} from "./service/restService";
 import {selectedFiles, setToRemoveIdPhoto, updateMainInfo} from './index';
 
 type Priority = {
@@ -77,6 +77,26 @@ $('#save-object-btn').on('click', function () {
             alert('Произошла ошибка при сохранении!');
         })
         .finally(() => window.location.reload())
+});
+
+$('#save-image-priority-btn').on('click', function () {
+    const priorities = []
+    $('#additional-images-priority img').each(function(index) {
+        // Получаем текущий элемент в цикле
+        const image = $(this);
+
+        // Получаем атрибут data-priority
+        const priority = index + 1;
+        const id = image.data('id');
+        priorities.push({id, priority})
+    });
+
+    setImgPriority(priorities)
+        .then(() => alert('Успешно сохранено!'))
+        .catch(error => {
+            console.error(error);
+            alert('Произошла ошибка при сохранении!');
+        });
 });
 
 

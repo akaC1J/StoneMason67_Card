@@ -63,6 +63,25 @@ export async function setPriority(priorities: { id: number; index_priority: numb
     return await response.json();
 }
 
+export async function setImgPriority(priorities: {id: number; priority: number }[]): Promise<any> {
+    const response = await fetch(`http://localhost:5000/api/priority_images/`, {
+        method: 'POST',  // указываем метод запроса
+        headers: {
+            'Content-Type': 'application/json'  // указываем тип контента в заголовке
+        },
+        body: JSON.stringify(priorities)  // преобразуем объект contentInfo в строку JSON
+    });
+
+    // Проверяем, успешно ли выполнился запрос
+    if (!response.ok) {
+        throw new Error('Network response was not ok' + response.statusText);
+    }
+
+
+    // разбираем ответ сервера в JSON
+    return await response.json();
+}
+
 // Функция для отправки данных формы на сервер
 export async function sendFormData(formData: FormData): Promise<any> {
     const response = await fetch('http://localhost:5000/api/upload_main_data', {

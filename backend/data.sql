@@ -232,3 +232,15 @@ VALUES (DEFAULT, 'sunOchag/sub4.jpg', 8, true);
 INSERT INTO public.photos (id, path, object_id, visible)
 VALUES (DEFAULT, 'sunOchag/sub5.jpg', 8, true);
 
+INSERT INTO public.photos (id, path, object_id, visible)
+VALUES (DEFAULT, 'ledAndUgol/main.jpg', 7, true);
+
+INSERT INTO public.photos (id, path, object_id, visible)
+VALUES (DEFAULT, 'ledAndUgol/sub1.jpg', 7, true);
+
+INSERT INTO public.photos (id, path, object_id, visible)
+VALUES (DEFAULT, 'ledAndUgol/sub2.jpg', 7, true);
+
+INSERT INTO public.photos (id, path, object_id, visible)
+VALUES (DEFAULT, 'ledAndUgol/sub3.jpg', 7, true);
+

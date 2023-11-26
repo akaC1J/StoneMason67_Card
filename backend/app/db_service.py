@@ -92,14 +92,15 @@ def get_object_info(object_id: int) -> List[PhotoInfo]:
     info_list = []  # создаём пустой список, чтобы хранить словари
 
     for row in results:
-        id, path, object_id, is_visible = row
-        print(f"DB_SERVICE::: Получен результат запроса: id: {id}, path: {path}, object_id: {object_id}")
+        id, path, object_id, priority, is_visible = row
+        print(f"DB_SERVICE::: Получен результат запроса: id: {id}, path: {path}, object_id: {object_id}, priority: {priority}")
 
         # создаём словарь для текущей строки и добавляем его в список
         info_dict: PhotoInfo = {
             'id': id,
             'path': path,
             'object_id': object_id,
+            'prioirity': priority,
             'is_visible': is_visible
         }
         info_list.append(info_dict)

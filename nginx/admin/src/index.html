@@ -22,9 +22,9 @@
         <ul>
             <li><a href="#objects-section">Загрузить фотографии объектов</a></li>
             <li><a href="#about-section">О нас</a></li>
-            <li><a href="#contacts-section">Контакты</a></li>
+            <li><a href="#priority-img-section">Порядок дополнительных изображений</a></li>
             <li><a href="#priority-section">Порядок</a></li>
-
+            <li><a href="#contacts-section">Контакты</a></li>
 
         </ul>
     </nav>
@@ -78,6 +78,25 @@
                 <!-- Подробности о выбранном объекте -->
             </div>
         </section>
+		
+		<section id="priority-img-section">
+            <h2>Порядок дополнительных фотографий</h2>
+			<label for="object-select-priority">Выберите объект:</label>
+            <select id="object-select-priority"></select>
+            <div id="additional-images-priority">
+			<!-- Здесь будут превью изображений -->
+			</div>
+            <button id="save-image-priority-btn" style="display: block">Сохранить</button>
+		</section>
+		
+		<section id="priority-section">
+            <h2>Порядок объектов</h2>
+            <table id="objects-table-index" class="inline-table">
+            </table>
+            <table id="objects-table-objects" class="inline-table">
+            </table>
+            <button id="save-priority-btn" style="display: block">Сохранить</button>
+        </section>
 
 
         <!-- Раздел "О нас" -->
@@ -94,14 +113,9 @@
             <button id="save-contacts-btn">Сохранить</button>
         </section>
 
-        <section id="priority-section">
-            <h2>Порядок объектов</h2>
-            <table id="objects-table-index" class="inline-table">
-            </table>
-            <table id="objects-table-objects" class="inline-table">
-            </table>
-            <button id="save-priority-btn" style="display: block">Сохранить</button>
-        </section>
+        
+		
+		
     </main>
 
 </div>

@@ -16,12 +16,11 @@ export function updateMainInfo(){
             options.push(newOption);
         })
         fillSelect(options);
-
-        // Запускаем событие change для object-select
         $('#object-select').trigger('change');
+        fillAddImgSelect(options)
     })
-}
 
+}
 
 
 getContentInfo('about').then((data : any) => {
@@ -120,7 +119,7 @@ $('#object-select').on('change',function() {
 $('#add-additional-image').on('click', function() {
     $('#image-upload-input').click();
 });
-$("#additional-images").sortable();
+
 
 export let setToRemoveIdPhoto = new Set();
 // Этот набор будет хранить все выбранные файлы
@@ -210,13 +209,25 @@ function manageDeleteButtonVisibility(imageSelector) {
     }
 }
 
+function fillAddImgSelect(options){
+    const $select_add_img = $('#object-select-priority');
+    $select_add_img.empty();
+
+    options.forEach(option => {
+        $select_add_img.append($('<option>', {
+            value: option.id,
+            text: option.name,
+        }));
+    });
+    $("#additional-images-priority").sortable();
+    $('#object-select-priority').trigger('change');
+}
+
 function fillSelect(options) {
     const $select = $('#object-select');
 
-    // Очистка текущих опций
     $select.empty();
 
-    // Добавление новых опций
     options.forEach(option => {
         $select.append($('<option>', {
             value: option.id,
@@ -227,6 +238,40 @@ function fillSelect(options) {
         }));
     });
 }
+
+$('#object-select-priority').on('change',function() {
+    const selectedOption = $(this).find('option:selected');
+    getObjectInfo(selectedOption.val() as number).then((data: any) => {
+
+        // Очистка контейнера дополнительных изображений
+        $('#additional-images-priority').empty();
+
+        data.sort((a, b) => a.priority - b.priority);
+        data.forEach(el => {
+            let objImgPath = BASE_IMG_URL + el.path;
+
+            // Создаем обертку для изображения и кнопки
+            const imageWrapper = $('<div/>', {
+                class: 'additional-image-preview', // применяем стиль к обертке
+            });
+
+            const newImagePreview = $('<img/>', {
+                src: objImgPath,
+                alt: 'Additional Image',
+                'data-id': el.id,
+                'data-priority:': el.prioriy
+            }).css({
+                width: '100%',
+                height: '100%'
+            });
+
+            imageWrapper.append(newImagePreview);
+            $('#additional-images-priority').append(imageWrapper);
+        });
+    });
+})
+
+
 
 $('#delete-object-btn').on('click', function () {
     const isConfirmed = confirm('Вы хотите удалить объект? Все фотографии и информация о нем будут удалены с сервера.');
