@@ -27,7 +27,8 @@ def upload_main_data(request: Request):
 
 def save_or_delete_info(request):
     print("FILE_SERVICE:::Начали выполнение метода save_or_delete_info")
-    object_id: int = int(request.form.get('id') if request.form.get('id') != '-1' else db_service.insert_empty_object(request.form.get('object_name')))
+    object_id: int = int(request.form.get('id') if request.form.get('id') != '-1' else db_service.insert_empty_object(
+        request.form.get('object_name')))
     object_from_db = db_service.get_single_object(object_id)
     additional_images_from_db: Optional[List[PhotoInfo]] = db_service.get_object_info(object_id)
     print(f"FILE_SERVICE:::Вносим изменения для существующего объекта:{object_id}: {object_from_db.get('name')}")
@@ -112,7 +113,6 @@ def rename_file_info(request):
     try:
         additional_images_from_db = db_service.get_object_info(object_id)
 
-
         new_object_from_db['index_photo_path'] = rename_image(
             object_id,
             object_name,
@@ -154,6 +154,7 @@ def make_short_url_for_add_image(object_name_ru, postfix, extension, object_id):
     name_file = f"{postfix}_{translit_name}.{extension}"
     name_directory = f"{object_id}_{translit_and_clean(object_name_ru)}"
     return os.path.join(name_directory, name_file)
+
 
 def remove_file_if_exists(path_to_delete: str, message=f'Удаления изображения невозможно'):
     try:
@@ -294,17 +295,21 @@ def translit_and_clean(str) -> str:
 
 
 def delete_object_info(object_id: int):
-    if (object_id == '-1' or not object_id):
+    if object_id == '-1' or not object_id:
         return ({"error": "Bad Request", "message": "Missing required fields"}), 400
 
     object_from_db = db_service.get_single_object(object_id)
-    remove_file(os.path.join(base_url_static_image, sub_base_url_index_path, object_from_db['index_photo_path']))
-    remove_file(os.path.join(base_url_static_image, sub_base_url_object_path, object_from_db['object_photo_path']))
+    if object_from_db['index_photo_path']:
+        remove_file(os.path.join(base_url_static_image, sub_base_url_index_path, object_from_db['index_photo_path']))
+    if object_from_db['object_photo_path']:
+        remove_file(os.path.join(base_url_static_image, sub_base_url_object_path, object_from_db['object_photo_path']))
     additional_images_from_db = db_service.get_object_info(object_id)
 
     for photo_info in additional_images_from_db:
-        remove_file(os.path.join(base_url_static_image, sub_base_url_adds_images, photo_info["path"]))
+        if  photo_info["path"]:
+            remove_file(os.path.join(base_url_static_image, sub_base_url_adds_images,  photo_info["path"]))
     db_service.delete_object_info(object_id)
+
 
 def remove_file(full_path):
     try:
