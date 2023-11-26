@@ -15,7 +15,7 @@ import {FullPageSection} from "../model/FullPageSection";
 $('head').append(getHeadElement());
 $('body').append(getMenuDiv());
 getAllObjects().then(data => {
-
+    data.sort((a, b) => a.object_priority - b.object_priority);
     function mappingDataToModel(json : any) : FullPageSection {
         let id: number = json.id;
         let name: string = json.name;

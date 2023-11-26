@@ -13,7 +13,7 @@ $('head').append(getHeadElement());
 $('body').append(getMenuDiv());
 
 getAllObjects().then(data => {
-
+    data.sort((a, b) => a.index_priority - b.index_priority);
     function mappingDataToModel(json : any) : FullPageSection {
         let id: number = json.id;
         let name: string = json.name;

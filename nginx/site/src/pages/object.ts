@@ -25,6 +25,7 @@ function loadObjectData(objectId: number) {
     // И заполните содержимое div с id "content"
     let response: any = getObjectInfo(objectId)
     response.then(data => {
+        data.sort((a, b) => a.priority - b.priority);
         const pathUploadImages = '../../static_images/';
         data.forEach((section) => {
             $('#fullpage').append(getCommonSection(new FullPageSection(null,pathUploadImages+ section.path,null,null), false));

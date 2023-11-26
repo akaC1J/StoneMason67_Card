@@ -126,4 +126,6 @@ def _transform_data_short_url_to_full_main(element: ConstructionObjectInfo) -> C
                                   name=element["name"],
                                   index_photo_path=full_path_index,
                                   object_photo_path=full_path_object,
-                                  description=element["description"])
+                                  description=element["description"],
+                                  index_priority=element['index_priority'],
+                                  object_priority=element['object_priority'])

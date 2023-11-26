@@ -8,6 +8,7 @@ class PhotoInfo(TypedDict):
     path: str
     object_id: int
     is_visible: bool
+    priority: int
 
 
 class ConstructionObjectInfo(TypedDict):
@@ -16,6 +17,8 @@ class ConstructionObjectInfo(TypedDict):
     description: str
     index_photo_path: str
     object_photo_path: str
+    index_priority:int
+    object_priority:int
 
 
 GET_SINGLE_OBJECT_QUERY = 'select * from public.construction_objects where id=%s'
@@ -55,7 +58,8 @@ INSERT_EMPTY_OBJECT_QUERY = 'insert into public.construction_objects (name) valu
 def get_single_object(object_id) -> Optional[ConstructionObjectInfo]:
     result = database_engine.fetch_one(GET_SINGLE_OBJECT_QUERY, (object_id,))
     if result:
-        id, name, description, index_photo_path, object_photo_path, *_ = result
+        (id, name, description, index_photo_path, object_photo_path,
+         index_priority, object_priority) = result
         print(
             f"DB_SERVICE:::Получен результат запроса: id: {id}, name: {name}, description: {description}, "
             f"index_photo_path: {index_photo_path}, object_photo_path: {object_photo_path}")
@@ -65,7 +69,9 @@ def get_single_object(object_id) -> Optional[ConstructionObjectInfo]:
             'name': name,
             'description': description,
             'index_photo_path': index_photo_path,
-            'object_photo_path': object_photo_path
+            'object_photo_path': object_photo_path,
+            'index_priority': index_priority,
+            'object_priority': object_priority
         }
         return object_dict  # возвращаем словарь с данными объекта
     else:
@@ -77,7 +83,8 @@ def get_list_objects() -> List[ConstructionObjectInfo]:
     objects_list = []  # создаём пустой список, чтобы хранить словари
 
     for row in results:
-        id, name, description, index_photo_path, object_photo_path, *_ = row
+        (id, name, description, index_photo_path, object_photo_path,
+         index_priority, object_priority) = row
         print(
             f"DB_SERVICE:::Получен результат запроса: id: {id}, name: {name}, description: {description}, "
             f"index_photo_path: {index_photo_path}, object_photo_path: {object_photo_path}")
@@ -88,7 +95,9 @@ def get_list_objects() -> List[ConstructionObjectInfo]:
             'name': name,
             'description': description,
             'index_photo_path': index_photo_path,
-            'object_photo_path': object_photo_path
+            'object_photo_path': object_photo_path,
+            'index_priority': index_priority,
+            'object_priority': object_priority
         }
         objects_list.append(object_dict)
 
@@ -109,7 +118,7 @@ def get_object_info(object_id: int) -> List[PhotoInfo]:
             'id': id,
             'path': path,
             'object_id': object_id,
-            'prioirity': priority,
+            'priority': priority,
             'is_visible': is_visible
         }
         info_list.append(info_dict)
