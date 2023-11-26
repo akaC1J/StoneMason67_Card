@@ -33,8 +33,7 @@ def init_routes(app):
 
     @app.route(f'/api/object_info/<int:object_id>', methods=['DELETE'])
     def delete_object_info(object_id):
-        data: List[PhotoInfo] = db_service.delete_object_info(object_id)
-        return  ({"message": "Success"}), 200
+        return file_service.delete_object_info(object_id)
 
     @app.route(f'/api/content_info/<string:page_id>', methods=['GET'])
     def get_content_info(page_id):

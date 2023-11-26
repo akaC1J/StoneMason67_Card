@@ -59,11 +59,19 @@ $('#object-select').on('change',function() {
             $('#index-photo').attr('src', indexPhotoPath);
             $('label[for="index-image"]').hide();
         }
+        else {
+            $('#index-photo').attr('src', null);
+            $('label[for="index-image"]').show();
+        }
 
         if (selectedOption.data('object-photo-path')) {
             const objectPhotoPath = BASE_IMG_URL + selectedOption.data('object-photo-path');
             $('#object-photo').attr('src', objectPhotoPath);
             $('label[for="other-image"]').hide();
+        }
+        else {
+            $('#object-photo').attr('src', null);
+            $('label[for="other-image"]').show();
         }
 
         // Теперь вы можете использовать description, indexPhotoPath и objectPhotoPath для обновления других полей.
@@ -288,8 +296,9 @@ $('#delete-object-btn').on('click', function () {
 
                 fillSelect(options);
                 fillAddImgSelect(options )
-
+                $('#object-select').trigger('change');
                 alert('Объект был удален');
+
             }));
     }
 });

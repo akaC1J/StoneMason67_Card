@@ -24,3 +24,5 @@ CREATE TABLE IF NOT EXISTS photos
     FOREIGN KEY (object_id) REFERENCES construction_objects (id) ON DELETE CASCADE
 );
 
+SELECT setval(pg_get_serial_sequence('public.construction_objects', 'id'),
+              (SELECT MAX(id) FROM public.construction_objects));

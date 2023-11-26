@@ -27,9 +27,9 @@ def upload_main_data(request: Request):
 
 def save_or_delete_info(request):
     print("FILE_SERVICE:::Начали выполнение метода save_or_delete_info")
-    object_id: Optional[int] = int(request.form.get('id')) if request.form.get('id') else None
-    object_from_db = db_service.get_single_object(object_id) if object_id else None
-    additional_images_from_db: Optional[List[PhotoInfo]] = db_service.get_object_info(object_id) if object_id else None
+    object_id: int = int(request.form.get('id') if request.form.get('id') != '-1' else db_service.insert_empty_object(request.form.get('object_name')))
+    object_from_db = db_service.get_single_object(object_id)
+    additional_images_from_db: Optional[List[PhotoInfo]] = db_service.get_object_info(object_id)
     print(f"FILE_SERVICE:::Вносим изменения для существующего объекта:{object_id}: {object_from_db.get('name')}")
 
     index_image_delete = (request.form.get('index_image_delete') == 'true'
@@ -79,11 +79,10 @@ def save_or_delete_info(request):
                 object_from_db.get('object_photo_path') if object_from_db else None
             )
 
-        if object_id:
-            db_service.update_info_object(new_object_from_db.get('index_photo_path'),
-                                          new_object_from_db.get('object_photo_path'),
-                                          new_object_from_db.get('name'),
-                                          object_id)
+        db_service.update_info_object(new_object_from_db.get('index_photo_path'),
+                                      new_object_from_db.get('object_photo_path'),
+                                      new_object_from_db.get('name'),
+                                      object_id)
 
         for img in additional_images:
             suffix = random_hash()
@@ -97,7 +96,9 @@ def save_or_delete_info(request):
 def rename_file_info(request):
     print("FILE_SERVICE:::Начали выполнение метода rename_file_info")
     object_id: Optional[int] = int(request.form.get('id'))
-    object_from_db = db_service.get_single_object(object_id) if object_id else None
+    if object_id == -1:
+        return
+    object_from_db = db_service.get_single_object(object_id)
     object_name = request.form.get('object_name')
     rename_flag = object_from_db and object_name != object_from_db['name']
     if not rename_flag:
@@ -109,42 +110,42 @@ def rename_file_info(request):
     new_object_from_db.update(name=object_name)
 
     try:
-        additional_images_from_db = db_service.get_object_info(object_id) if object_id else None
+        additional_images_from_db = db_service.get_object_info(object_id)
 
-        if object_id:
-            new_object_from_db['index_photo_path'] = rename_image(
-                object_id,
-                object_name,
-                sub_base_url_index_path,
-                'main',
-                object_from_db.get('index_photo_path') if object_from_db else None
-            )
-            new_object_from_db['object_photo_path'] = rename_image(
-                object_id,
-                object_name,
-                sub_base_url_object_path,
-                'object',
-                object_from_db.get('object_photo_path') if object_from_db else None)
 
-            db_service.update_info_object(new_object_from_db.get('index_photo_path'),
-                                          new_object_from_db.get('object_photo_path'),
-                                          new_object_from_db.get('name'),
-                                          object_id)
+        new_object_from_db['index_photo_path'] = rename_image(
+            object_id,
+            object_name,
+            sub_base_url_index_path,
+            'main',
+            object_from_db.get('index_photo_path') if object_from_db else None
+        )
+        new_object_from_db['object_photo_path'] = rename_image(
+            object_id,
+            object_name,
+            sub_base_url_object_path,
+            'object',
+            object_from_db.get('object_photo_path') if object_from_db else None)
 
-            if additional_images_from_db:
-                photo_updates = []
-                for image in additional_images_from_db:
-                    old_short_url_add_image = os.path.normpath(image['path'])
-                    image['path'] = old_short_url_add_image
-                    extension = os.path.splitext(old_short_url_add_image)[1].lstrip('.')
-                    new_short_url_add_image = make_short_url_for_add_image(object_name, random_hash(), extension,
-                                                                           object_id)
-                    photo_updates.append((old_short_url_add_image, new_short_url_add_image))
-                rename_additional_images(photo_updates)
-                update_additional_urls_images_db(additional_images_from_db, photo_updates)
+        db_service.update_info_object(new_object_from_db.get('index_photo_path'),
+                                      new_object_from_db.get('object_photo_path'),
+                                      new_object_from_db.get('name'),
+                                      object_id)
+
+        if additional_images_from_db:
+            photo_updates = []
+            for image in additional_images_from_db:
+                old_short_url_add_image = os.path.normpath(image['path'])
+                image['path'] = old_short_url_add_image
+                extension = os.path.splitext(old_short_url_add_image)[1].lstrip('.')
+                new_short_url_add_image = make_short_url_for_add_image(object_name, random_hash(), extension,
+                                                                       object_id)
+                photo_updates.append((old_short_url_add_image, new_short_url_add_image))
+            rename_additional_images(photo_updates)
+            update_additional_urls_images_db(additional_images_from_db, photo_updates)
 
     except Exception as e:
-        print("FILE_SERVICE:::" + str(e))  # В реальной жизни используйте модуль logging
+        print("FILE_SERVICE:::" + e)  # В реальной жизни используйте модуль logging
         return {"error": "Internal Server Error"}, 500
 
 
@@ -153,20 +154,6 @@ def make_short_url_for_add_image(object_name_ru, postfix, extension, object_id):
     name_file = f"{postfix}_{translit_name}.{extension}"
     name_directory = f"{object_id}_{translit_and_clean(object_name_ru)}"
     return os.path.join(name_directory, name_file)
-
-
-def get_absolute_path(images_path, path):
-    # Если путь уже абсолютный, возвращаем его как есть
-    if os.path.isabs(path):
-        return path
-
-    # Если путь относительный, строим абсолютный путь
-    # с использованием images_path как базовой директории
-    images_path = images_path or os.getcwd()  # Если UPLOAD_IMAGES_PATH не установлен, используем текущую директорию
-    absolute_path = os.path.join(images_path, path)
-    absolute_path = os.path.abspath(absolute_path)  # Преобразуем в абсолютный путь
-    return absolute_path
-
 
 def remove_file_if_exists(path_to_delete: str, message=f'Удаления изображения невозможно'):
     try:
@@ -192,12 +179,15 @@ def generate_image_path(object_id, object_name_ru, sub_base_url, suffix, old_nam
 def save_image(image, object_id, object_name_ru, sub_base_url, suffix, old_name_from_db):
     new_full_url, _ = generate_image_path(object_id, object_name_ru, sub_base_url, suffix, old_name_from_db, image)
     if image:
+        os.makedirs(os.path.dirname(new_full_url), exist_ok=True)
         image.save(new_full_url)
         print(f"FILE_SERVICE:::Изображение с object_id: {object_id} по пути {new_full_url} сохранено")
     return os.path.basename(new_full_url)
 
 
 def rename_image(object_id, object_name_ru, sub_base_url, suffix, old_name_from_db):
+    if (not old_name_from_db):
+        return
     new_full_url, new_short_url = generate_image_path(object_id, object_name_ru, sub_base_url, suffix, old_name_from_db)
     old_full_url = os.path.join(base_url_static_image, sub_base_url, old_name_from_db)
     rename(old_full_url, new_full_url)
@@ -272,7 +262,7 @@ def rename(old_path, new_path):
     try:
         os.rename(old_path, new_path)
         _remove_empty_dir(old_path)
-        print(f"FILES_SERVICE:::Файл {old_path} был успешно переименован/перемещен в {new_path}")
+        print(f"FILES_SERVICE:::Файл {old_path} был успешно удален")
         return True
     except OSError as e:
         print(f"FILE_SERVICE:::Ошибка при переименовании файла: {e}")
@@ -301,3 +291,25 @@ def random_hash(_len=5):
 def translit_and_clean(str) -> str:
     translit_str = transliterate.translit(str, reversed=True).replace(' ', '_')
     return re.sub(r'[^\w.]', '', translit_str)
+
+
+def delete_object_info(object_id: int):
+    if (object_id == '-1' or not object_id):
+        return ({"error": "Bad Request", "message": "Missing required fields"}), 400
+
+    object_from_db = db_service.get_single_object(object_id)
+    remove_file(os.path.join(base_url_static_image, sub_base_url_index_path, object_from_db['index_photo_path']))
+    remove_file(os.path.join(base_url_static_image, sub_base_url_object_path, object_from_db['object_photo_path']))
+    additional_images_from_db = db_service.get_object_info(object_id)
+
+    for photo_info in additional_images_from_db:
+        remove_file(os.path.join(base_url_static_image, sub_base_url_adds_images, photo_info["path"]))
+    db_service.delete_object_info(object_id)
+
+def remove_file(full_path):
+    try:
+        os.remove(full_path)
+        print(f"FILES_SERVICE:::Файл {full_path} был успешно удален")
+    except OSError:
+        pass
+    _remove_empty_dir(full_path)

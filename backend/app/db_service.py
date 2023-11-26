@@ -25,7 +25,7 @@ GET_CONTENT_INFO = 'select * from public.content_info where page_id=%s'
 GET_ALL_PRIORITY = ('select id, name, index_priority, object_priority from public.construction_objects order by '
                     'index_priority')
 DELETE_PHOTOS_BY_IDS = 'delete from public.photos where id in %s'
-DELETE_OBJECT_INFO_QUERY = 'delete from public.constuction_objects where id in %s'
+DELETE_OBJECT_INFO_QUERY = 'delete from public.construction_objects where id = %s'
 
 UPDATE_PRIORITY_QUERY = '''
     UPDATE public.construction_objects
@@ -49,6 +49,7 @@ UPDATE_SINGLE_OBJECT_QUERY = ('update public.construction_objects set index_phot
 
 UPDATE_PHOTO_PATH_QUERY = 'update public.photos set path = %s where id = %s;'
 INSERT_PHOTO_QUERY = 'insert into public.photos (path, object_id, visible) values (%s, %s, %s) returning id'
+INSERT_EMPTY_OBJECT_QUERY = 'insert into public.construction_objects (name) values(%s) returning id'
 
 
 def get_single_object(object_id) -> Optional[ConstructionObjectInfo]:
@@ -100,7 +101,8 @@ def get_object_info(object_id: int) -> List[PhotoInfo]:
 
     for row in results:
         id, path, object_id, priority, is_visible = row
-        print(f"DB_SERVICE::: Получен результат запроса: id: {id}, path: {path}, object_id: {object_id}, priority: {priority}")
+        print(
+            f"DB_SERVICE::: Получен результат запроса: id: {id}, path: {path}, object_id: {object_id}, priority: {priority}")
 
         # создаём словарь для текущей строки и добавляем его в список
         info_dict: PhotoInfo = {
@@ -155,6 +157,7 @@ def set_priority(data):
     update_data = [(item["index_priority"], item["object_priority"], item["id"]) for item in data]
     database_engine.execute_many_sql(UPDATE_PRIORITY_QUERY, update_data)
 
+
 def set_priority_images(data):
     update_data = [(item["priority"], item["id"]) for item in data]
     database_engine.execute_many_sql(UPDATE_PRIORITY_IMAGES_QUERY, update_data)
@@ -180,10 +183,11 @@ def delete_photos_by_ids(photo_ids: List[Any]):
         print(f"DB_SERVICE:::Ошибка при удалении фотографий: {e}")
         raise e
 
+
 def delete_object_info(object_id: int):
     # Выполняем SQL-запрос
     try:
-        database_engine.execute_sql(DELETE_OBJECT_INFO_QUERY, object_id)
+        database_engine.execute_sql(DELETE_OBJECT_INFO_QUERY, (object_id,))
         print(f"DB_SERVICE:::Удален объект с ID: {object_id}")
         return True
     except Exception as e:
@@ -193,7 +197,7 @@ def delete_object_info(object_id: int):
 
 # Dict имеет вид ключ - это id, значение это path(url)
 def update_photo_paths(dicts_id_new_urls: Dict[int, str]):
-    tuple_id_new_urls: List[Tuple[str ,int]] = [(url, id) for id, url in dicts_id_new_urls.items()]
+    tuple_id_new_urls: List[Tuple[str, int]] = [(url, id) for id, url in dicts_id_new_urls.items()]
     # Выполнение SQL-запроса для каждого кортежа
     try:
         database_engine.execute_many_sql(UPDATE_PHOTO_PATH_QUERY, tuple_id_new_urls)
@@ -211,7 +215,7 @@ def update_info_object(index_photo_path, object_photo_path, name, id):
     try:
         # Возвращаем ID новой записи, который был автоматически сгенерирован
         database_engine.execute_sql(UPDATE_SINGLE_OBJECT_QUERY,
-                                             (index_photo_path, object_photo_path, name, id))
+                                    (index_photo_path, object_photo_path, name, id))
         print(f"DB_SERVICE:::Объект id:{id} с {{\n"
               f"name: {name},\n"
               f"index_photo_path: {index_photo_path},\n"
@@ -233,4 +237,18 @@ def insert_photo(path: str, object_id: int, visible: bool = True) -> int:
         return result
     except Exception as e:
         print(f"DB_SERVICE:::Ошибка при добавлении фотографии: {e}")
+        raise e
+
+
+def insert_empty_object(name) -> int:
+    """
+    Вставка фотографии в базу данных и возвращение сгенерированного ID.
+    """
+    try:
+        # Возвращаем ID новой записи, который был автоматически сгенерирован
+        result = database_engine.execute_sql(INSERT_EMPTY_OBJECT_QUERY, (name,))
+        print(f"DB_SERVICE:::Получен новый id для object = {result}")
+        return result
+    except Exception as e:
+        print(f"DB_SERVICE:::Ошибка создания новой записи: {e}")
         raise e
