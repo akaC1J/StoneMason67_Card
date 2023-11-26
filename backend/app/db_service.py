@@ -25,6 +25,7 @@ GET_CONTENT_INFO = 'select * from public.content_info where page_id=%s'
 GET_ALL_PRIORITY = ('select id, name, index_priority, object_priority from public.construction_objects order by '
                     'index_priority')
 DELETE_PHOTOS_BY_IDS = 'delete from public.photos where id in %s'
+DELETE_OBJECT_INFO_QUERY = 'delete from public.constuction_objects where id in %s'
 
 UPDATE_PRIORITY_QUERY = '''
     UPDATE public.construction_objects
@@ -174,6 +175,16 @@ def delete_photos_by_ids(photo_ids: List[Any]):
     try:
         database_engine.execute_sql(DELETE_PHOTOS_BY_IDS, (photo_ids_tuple,))
         print(f"DB_SERVICE:::Удалены фотографии с ID: {photo_ids}")
+        return True
+    except Exception as e:
+        print(f"DB_SERVICE:::Ошибка при удалении фотографий: {e}")
+        raise e
+
+def delete_object_info(object_id: int):
+    # Выполняем SQL-запрос
+    try:
+        database_engine.execute_sql(DELETE_OBJECT_INFO_QUERY, object_id)
+        print(f"DB_SERVICE:::Удален объект с ID: {object_id}")
         return True
     except Exception as e:
         print(f"DB_SERVICE:::Ошибка при удалении фотографий: {e}")

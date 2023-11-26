@@ -31,6 +31,11 @@ def init_routes(app):
         data = list(map(lambda el: _transform_data_short_url_to_full_added(el), data))
         return data, 200
 
+    @app.route(f'/api/object_info/<int:object_id>', methods=['DELETE'])
+    def delete_object_info(object_id):
+        data: List[PhotoInfo] = db_service.delete_object_info(object_id)
+        return  ({"message": "Success"}), 200
+
     @app.route(f'/api/content_info/<string:page_id>', methods=['GET'])
     def get_content_info(page_id):
         data = db_service.get_content_info(page_id)

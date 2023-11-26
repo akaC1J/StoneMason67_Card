@@ -278,7 +278,7 @@ $('#delete-object-btn').on('click', function () {
 
     if (isConfirmed) {
         // Получаем ID выбранного объекта
-        const selectedObjectId = $('#object-select').val();
+        const selectedObjectId = Number($('#object-select').val());
         deleteObjectInfo(selectedObjectId).finally(() =>  // Затем обновите список объектов
             getAllObjects().then(data => {
                 let options = [];
