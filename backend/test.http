@@ -1,5 +1,15 @@
+### login
+POST http://localhost:5000/api/login
+Content-Type:  application/json
+
+
+{
+"password": "qwerty123"
+}
+
 ### Проверить соединение
 GET http://localhost:5000
+Authorization: Fc3Out4xj2AghxYy32eigg
 
 ### Отправить POST-запрос с контактами
 POST http://2a00:f940:2:4:2::2925:5000/api/contact

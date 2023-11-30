@@ -7,9 +7,17 @@ import './saveButtonHandlers'
 
 let BASE_IMG_URL: string = '../../static_images/'
 
+const authToken = localStorage.getItem('authToken');
+
+if (!authToken) {
+    // Если authToken не существует или равен undefined, перенаправляем на login.html
+    window.location.href = 'login.html';
+}
+
+
 updateMainInfo()
 
-export function updateMainInfo(){
+export function updateMainInfo() {
     getAllObjects().then(data => {
         let options: OptionType[] = [];
         data.forEach((newOption: OptionType) => {
@@ -23,25 +31,24 @@ export function updateMainInfo(){
 }
 
 
-getContentInfo('about').then((data : any) => {
-   $('#about-text').val(data.block_data)
+getContentInfo('about').then((data: any) => {
+    $('#about-text').val(data.block_data)
 })
 
-getContentInfo('contacts').then((data : any) => {
+getContentInfo('contacts').then((data: any) => {
     $('#contacts-text').val(data.block_data)
 })
-
 
 
 type OptionType = {
     id: number;
     name: string;
-    description:string;
-    index_photo_path:string;
-    object_photo_path:string;
+    description: string;
+    index_photo_path: string;
+    object_photo_path: string;
 };
 
-$('#object-select').on('change',function() {
+$('#object-select').on('change', function () {
     getAllObjects().then(data => {
         const selectedOption = $(this).find('option:selected');
         let options: OptionType[] = [];
@@ -55,11 +62,10 @@ $('#object-select').on('change',function() {
         const description = selectedOption.data('description');
 
         if (selectedOption.data('index-photo-path')) {
-            const indexPhotoPath = BASE_IMG_URL  + selectedOption.data('index-photo-path');
+            const indexPhotoPath = BASE_IMG_URL + selectedOption.data('index-photo-path');
             $('#index-photo').attr('src', indexPhotoPath);
             $('label[for="index-image"]').hide();
-        }
-        else {
+        } else {
             $('#index-photo').attr('src', null);
             $('label[for="index-image"]').show();
         }
@@ -68,8 +74,7 @@ $('#object-select').on('change',function() {
             const objectPhotoPath = BASE_IMG_URL + selectedOption.data('object-photo-path');
             $('#object-photo').attr('src', objectPhotoPath);
             $('label[for="other-image"]').hide();
-        }
-        else {
+        } else {
             $('#object-photo').attr('src', null);
             $('label[for="other-image"]').show();
         }
@@ -104,7 +109,7 @@ $('#object-select').on('change',function() {
                     text: '-'
                 });
 
-                deleteButton.on('click', function() {
+                deleteButton.on('click', function () {
                     // Удаляем обертку при клике
                     imageWrapper.remove();
                     let imageId = newImagePreview.data('id');
@@ -124,7 +129,7 @@ $('#object-select').on('change',function() {
 
 });
 
-$('#add-additional-image').on('click', function() {
+$('#add-additional-image').on('click', function () {
     $('#image-upload-input').click();
 });
 
@@ -132,7 +137,7 @@ $('#add-additional-image').on('click', function() {
 export let setToRemoveIdPhoto = new Set();
 // Этот набор будет хранить все выбранные файлы
 export const selectedFiles = new Set();
-$('#image-upload-input').on('change', function() {
+$('#image-upload-input').on('change', function () {
     const file = (this as HTMLInputElement).files?.[0];
 
     if (file) {
@@ -141,7 +146,7 @@ $('#image-upload-input').on('change', function() {
 
         const reader = new FileReader();
 
-        reader.onload = function(e) {
+        reader.onload = function (e) {
             const imageSrc = e.target?.result;
 
             if (imageSrc) {
@@ -162,7 +167,7 @@ $('#image-upload-input').on('change', function() {
                     text: '-'
                 });
 
-                deleteButton.on('click', function() {
+                deleteButton.on('click', function () {
                     imageWrapper.remove();
                     selectedFiles.delete(file);
                 });
@@ -208,7 +213,7 @@ function manageDeleteButtonVisibility(imageSelector) {
     const imgSrc = $(imageSelector).attr('src');
     const deleteButton = $(imageSelector).siblings('.delete-image');
 
-    if(imgSrc) {
+    if (imgSrc) {
         // Показать кнопку удаления, если путь к изображению присутствует
         deleteButton.show();
     } else {
@@ -217,7 +222,7 @@ function manageDeleteButtonVisibility(imageSelector) {
     }
 }
 
-function fillAddImgSelect(options){
+function fillAddImgSelect(options) {
     const $select_add_img = $('#object-select-priority');
     $select_add_img.empty();
 
@@ -247,7 +252,7 @@ function fillSelect(options) {
     });
 }
 
-$('#object-select-priority').on('change',function() {
+$('#object-select-priority').on('change', function () {
     const selectedOption = $(this).find('option:selected');
     getObjectInfo(selectedOption.val() as number).then((data: any) => {
 
@@ -280,7 +285,6 @@ $('#object-select-priority').on('change',function() {
 })
 
 
-
 $('#delete-object-btn').on('click', function () {
     const isConfirmed = confirm('Вы хотите удалить объект? Все фотографии и информация о нем будут удалены с сервера.');
 
@@ -295,7 +299,7 @@ $('#delete-object-btn').on('click', function () {
                 });
 
                 fillSelect(options);
-                fillAddImgSelect(options )
+                fillAddImgSelect(options)
                 $('#object-select').trigger('change');
                 alert('Объект был удален');
 
@@ -334,9 +338,9 @@ getAllPriority().then(data => {
 
     $(".inline-table").sortable({
         items: "tr:not(:first-child)",
-        update: function(event, ui) {
+        update: function (event, ui) {
             // Пересчет приоритетов после каждого перетаскивания
-            $(this).find('tr:not(:first-child)').each(function(index) {
+            $(this).find('tr:not(:first-child)').each(function (index) {
                 // Начинаем с 1, так как индексация в JavaScript начинается с 0
                 $(this).find('label').text(index + 1);
             });
@@ -345,7 +349,7 @@ getAllPriority().then(data => {
 
 })
 
-$('#objects-table').on('change', 'input.index-priority, input.object-priority', function() {
+$('#objects-table').on('change', 'input.index-priority, input.object-priority', function () {
     const $row = $(this).closest('tr');
     const objectId = $row.data('id');
     const indexPriority = $row.find('input.index-priority').val();

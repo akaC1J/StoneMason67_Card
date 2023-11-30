@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <style>
+        /* Общие стили для центрирования и фонового цвета */
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #4CAF50; /* Зелёный фон */
+            font-family: Arial, sans-serif;
+        }
+
+        /* Стилизация хедера */
+        header {
+            width: 100%;
+            background-color: #333; /* Темный фон для хедера */
+            color: white;
+            padding: 10px 0;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5); /* Добавляем тень для хедера */
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+
+        /* Стилизация формы */
+        #login-form {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top:  15% /* Добавляем верхний отступ к форме */
+        }
+
+        /* Стилизация поля ввода пароля */
+        #login-form input[type="password"] {
+            width: 80%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        /* Стилизация кнопки */
+        #login-form button {
+            width: 80%;
+            padding: 10px;
+            border: none;
+            background-color: #008CBA; /* Синяя кнопка */
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        #login-form button:hover {
+            background-color: #007B9E;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <h1>Админская панель</h1>
+</header>
+<form id="login-form">
+    <input type="password" id="password" placeholder="Пароль" required>
+    <button type="submit">Войти</button>
+</form>
+</body>
+</html>

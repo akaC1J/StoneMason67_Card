@@ -47,7 +47,7 @@ const plugins = () => {
     ];
 }
 console.log("ISDEV ", isDev);
-const entryNames = ['index'];
+const entryNames = ['index', 'login'];
 const entryObject = (entryNames) => {
     return entryNames.reduce((acc, name) => {
         acc[name] = `./${name}.ts`; // или .js, если вы используете JavaScript
