@@ -12,7 +12,6 @@ from db_service import ConstructionObjectInfo
 
 def init_routes(app):
     @app.route('/', methods=['GET'])
-    @token_required
     def ok():
         return 'OK', 200
 
@@ -22,14 +21,12 @@ def init_routes(app):
         return file_service.upload_main_data(request)
 
     @app.route('/api/objects/', methods=['GET'])
-    @token_required
     def get_all_objects():
         data: List[ConstructionObjectInfo] = db_service.get_list_objects()
         data = list(map(lambda el: _transform_data_short_url_to_full_main(el), data))
         return data, 200
 
     @app.route(f'/api/object_info/<int:object_id>', methods=['GET'])
-    @token_required
     def get_object_info(object_id):
         data: List[PhotoInfo] = db_service.get_object_info(object_id)
 
@@ -42,7 +39,6 @@ def init_routes(app):
         return file_service.delete_object_info(object_id)
 
     @app.route(f'/api/content_info/<string:page_id>', methods=['GET'])
-    @token_required
     def get_content_info(page_id):
         data = db_service.get_content_info(page_id)
         return data, 200
@@ -62,7 +58,6 @@ def init_routes(app):
         return ({"message": "Success"}), 200
 
     @app.route(f'/api/priority/', methods=['GET'])
-    @token_required
     def get_all_priority():
         data = db_service.get_all_priorities()
         return data, 200

@@ -22,7 +22,7 @@ def token_required(f):
     @wraps(f)
     def decorated_function(*args, **kwargs):
         # Проверка наличия токена в заголовке Authorization
-        token = request.headers.get('Authorization').split(' ')[1]
+        token = request.headers.get('Authorization').split(' ')[1] if request.headers.get('Authorization') else None
         if not active_token or active_token != token:
             return {"message": "Unauthorized"}, 401
         return f(*args, **kwargs)
