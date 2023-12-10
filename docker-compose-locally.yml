@@ -46,13 +46,22 @@ services:
       - DB_HOST=postgres
 
 
-  nginx:
-    build: nginx
+  nginx_site:
+    build: nginx/site
     ports:
       - "80:80"
       - "443:443"
     volumes:
       - ./nginx/data/nginx/locally:/etc/nginx/conf.d
-      - ./nginx/site/static_images:/usr/share/nginx/html/static_images
+      - ./nginx/static_images:/usr/share/nginx/html/static_images
     depends_on:
       - app
+
+  nginx_admin:
+    build: nginx/admin
+    ports:
+      - "2000:80"
+    volumes:
+      - ./nginx/static_images:/usr/share/nginx/html/static_images
+    depends_on:
+      - postgres

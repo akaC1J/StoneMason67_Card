@@ -25,4 +25,4 @@ db_start:
 	docker-compose -f docker-compose-locally.yml up postgres -d
 
 start_locally:
-	docker-compose -f docker-compose-locally.yml up nginx -d
+	docker-compose -f docker-compose-locally.yml up nginx_admin -d

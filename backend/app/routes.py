@@ -102,10 +102,17 @@ def init_routes(app):
 
     @app.route('/api/login/', methods=['POST'])
     def login() -> str:
+        print("login")
         return security_service.auth(request.get_json()['password'])
+
+    @app.before_request
+    def apply_cors():
+        if request.method == 'OPTIONS':
+            return app.make_default_options_response()
 
     @app.after_request
     def apply_cors(response):
+        print("cors")
         response.headers['Access-Control-Allow-Origin'] = '*'
         response.headers['Access-Control-Allow-Methods'] = 'GET, POST, PUT, DELETE, OPTIONS'
         response.headers['Access-Control-Allow-Headers'] = 'Content-Type, Authorization, x-ijt'

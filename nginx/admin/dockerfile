@@ -1,0 +1,11 @@
+# Используйте официальный образ Nginx
+FROM nginx:alpine
+
+# Удалите стандартные файлы Nginx (если необходимо)
+RUN rm -rf /usr/share/nginx/html/*
+
+# Скопируйте файлы из вашей папки dist в директорию Nginx
+COPY dist/ /usr/share/nginx/html/
+
+# Запуск Nginx в фоновом режиме
+CMD ["nginx", "-g", "daemon off;"]
