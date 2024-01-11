@@ -2,14 +2,13 @@ import hashlib
 import os
 import random
 import re
-import time
 from typing import List, Tuple, Optional, Dict, Any
 
 import transliterate
 from flask import Request
 
-from backend.app import db_service
-from backend.app.db_service import PhotoInfo
+import db_service
+from db_service import PhotoInfo
 
 # noinspection PyTypeChecker
 base_url_static_image: str = os.getenv("UPLOAD_IMAGES_PATH")

@@ -16,6 +16,8 @@ document.addEventListener("DOMContentLoaded", function() {
     $('body').append(getMenuDiv());
     const urlParams = new URLSearchParams(window.location.search);
     const object_id: number = parseInt(urlParams.get('id') as string);
+    const name: string = urlParams.get('name')
+    document.title = `${name} / Вольные каменщики 67`;
     // Вызывайте функцию для загрузки данных
     loadObjectData(object_id);
 });

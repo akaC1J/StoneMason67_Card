@@ -1,13 +1,15 @@
 import os.path
 from typing import List
 
-from flask import request
+from flask import request, abort
 
 import db_service
-from backend.app import file_service, security_service
-from backend.app.db_service import PhotoInfo
-from backend.app.security_service import token_required
+import file_service
+import security_service
+from redis_service import push_message_to_deque
 from db_service import ConstructionObjectInfo
+from db_service import PhotoInfo
+from security_service import token_required
 
 
 def init_routes(app):
@@ -117,6 +119,25 @@ def init_routes(app):
         response.headers['Access-Control-Allow-Methods'] = 'GET, POST, PUT, DELETE, OPTIONS'
         response.headers['Access-Control-Allow-Headers'] = 'Content-Type, Authorization, x-ijt'
         return response
+
+    @app.route('/api/contact', methods=['POST'])
+    def submit_form():
+        contact_method = request.form.get('contact_method')
+
+        if contact_method not in ['email', 'phone', 'telegram', 'whatsapp']:
+            abort(400, 'Неправильный тип контакта')
+
+        form_data = {
+            "Имя": request.form.get('name'),
+            "Способ контакта": contact_method,
+            "Контакт": request.form.get('contact'),
+            "Сообщение": request.form.get('message')
+        }
+
+        form_data_str = '\n'.join([f"{field}: {value}" for field, value in form_data.items()])  # Форматированная строка
+        push_message_to_deque('message_deque', form_data_str)
+
+        return "Сообщение отправлено успешно!", 200
 
 
 def _transform_data_short_url_to_full_added(element: PhotoInfo) -> PhotoInfo:

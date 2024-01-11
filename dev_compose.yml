@@ -6,7 +6,7 @@ services:
     ports:
       - "6379:6379"
 
-  postgres:
+  db:
     image: postgres
     volumes:
       - ./backend/postgres-data:/var/lib/postgresql/data
@@ -15,6 +15,7 @@ services:
       POSTGRES_PASSWORD: pass
     ports:
       - "5432:5432"
+    restart: "no"
 
   bot:
     build: backend/bot
@@ -22,13 +23,6 @@ services:
       - .env
     depends_on:
       - redis
-    environment:
-      - REDIS_HOST=redis
-      - REDIS_PORT=${REDIS_PORT}
-      - REDIS_PASSWORD=${REDIS_PASSWORD}
-      - TELEGRAM_USER_PASSWORD=1uu
-      - TELEGRAM_ADMIN_PASSWORD=1a
-      - BOT_TOKEN=${BOT_TOKEN}
 
   app:
     build: backend/app
@@ -36,21 +30,18 @@ services:
       - "5000:5000"
     depends_on:
       - redis
-      - postgres
+      - db
     env_file:
       - .env
     environment:
-      - REDIS_HOST=redis
-      - REDIS_PORT=${REDIS_PORT}
-      - REDIS_PASSWORD=${REDIS_PASSWORD}
-      - DB_HOST=postgres
-
+      - UPLOAD_IMAGES_PATH=/static_images
+    volumes:
+      - ./nginx/static_images:/static_images
 
   nginx_site:
     build: nginx/site
     ports:
       - "80:80"
-      - "443:443"
     volumes:
       - ./nginx/data/nginx/locally:/etc/nginx/conf.d
       - ./nginx/static_images:/usr/share/nginx/html/static_images
@@ -64,4 +55,4 @@ services:
     volumes:
       - ./nginx/static_images:/usr/share/nginx/html/static_images
     depends_on:
-      - postgres
+      - db

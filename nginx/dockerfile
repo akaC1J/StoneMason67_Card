@@ -1,7 +1,0 @@
-# Используйте официальный образ nginx
-FROM nginx:latest
-
-# Копируйте свой сайт в контейнер
-COPY site/dist /usr/share/nginx/html
-
-#COPY letsencrypt /etc/letsencrypt-cont

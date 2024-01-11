@@ -5,3 +5,5 @@
 !/backend/postgres-data/
 /nginx/site/static_images/
 /nginx/static_images/
+!/nginx/site/file_for_certbot
+!/сертификаты/

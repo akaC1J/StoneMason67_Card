@@ -1,0 +1,12 @@
+# Используйте официальный образ nginx
+FROM nginx:latest
+
+# Копируйте свой сайт в контейнер
+COPY dist /usr/share/nginx/html
+COPY robots.txt /usr/share/nginx/html
+# Копируйте ваш конфигурационный файл Nginx
+COPY configuration/default.conf /etc/nginx/conf.d/
+
+COPY ./file_for_certbot /usr/share/nginx/html/.well-known/acme-challenge/C6XecMAvoC7kH9CaRVr5MCpn5WoCNLKelyi-cuz22fw
+COPY configuration/fullchain.pem /etc/ssl/certs/fullchain.pem
+COPY configuration/privkey.pem /etc/ssl/private/privkey.pem

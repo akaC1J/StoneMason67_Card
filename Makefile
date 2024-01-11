@@ -12,7 +12,7 @@ stop:
 
 
 synchronize:
-	rsync -avz --exclude-from='rsyncignore.txt' . root@178.21.10.44:~/StoneMason67_Card
+	rsync -avz --filter="merge rsync_filter.txt" . root@178.21.10.44:~/StoneMason67_Card
 
 run-playbook:
 	ansible-playbook -i ansible/hosts ansible/playbooks/certbook.yml
@@ -22,7 +22,7 @@ connect:
 	ssh root@178.21.10.44
 
 db_start:
-	docker-compose -f docker-compose-locally.yml up postgres -d
+	docker-compose -f dev_compose.yml up db -d
 
 start_locally:
 	docker-compose -f docker-compose-locally.yml up nginx_admin -d
