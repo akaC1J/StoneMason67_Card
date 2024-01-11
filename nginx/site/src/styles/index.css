@@ -10,6 +10,32 @@
     position: fixed;
 }
 
+/* Стиль для плавного исчезновения */
+.fade-out {
+    opacity: 0;
+    transition: opacity 0.5s ease-out;
+}
+
+/* Стиль для плавного появления */
+.fade-in {
+    opacity: 1;
+    transition: opacity 0.5s ease-in;
+}
+
+#slogan {
+    font-weight: bold;
+    color: #e85a4f;
+    position: fixed;
+    top: calc(30px + 9em); /* Высота логотипа + отступ сверху */
+    left: 20px; /* Отступ слева, чтобы быть в линии с логотипом */
+    width: 27em; /* Ширина логотипа */
+    padding: 10px; /* Отступ внутри блока слогана */
+    background-color: rgba(255, 255, 255, 0.7); /* Например, полупрозрачный белый фон */
+    text-align: center; /* Выравнивание текста по центру */
+    z-index: 1001;
+    white-space: normal;
+}
+
 p.mainParagraph {
     margin: 0.5em;
     font-size: 25px;

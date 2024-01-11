@@ -7,7 +7,18 @@ export function createFullPageSlider() {
         scrollHorizontally: true,
         navigation: true,
         showActiveTooltip: true,
-        scrollingSpeed: 1400
+        scrollingSpeed: 1400,
+        onLeave: function(origin, destination, direction){
+            const slogan = document.getElementById('slogan');
+            // Проверяем, если слайд первый, показываем слоган
+            if(destination.index === 0){
+                slogan.classList.remove('fade-out');
+                slogan.classList.add('fade-in');
+            } else {
+                slogan.classList.remove('fade-in');
+                slogan.classList.add('fade-out');
+            }
+        }
     });
 }
 

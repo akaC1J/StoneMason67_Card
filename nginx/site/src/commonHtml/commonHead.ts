@@ -6,7 +6,8 @@ export default function getHeadElement() {
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://stonemason67.ru/" />
         <meta property="og:image" content="https://stonemason67.ru/img/new_logo/scalar/short_logo.png" />
-    
+        <meta name="keywords" content="Дом под ключ Смоленск, строительство домов, Дом под ключ в Смоленске, построить дом, строительство коттеджей Смоленск, частные дома под ключ, загородные коттеджи, цена дома под ключ, коттеджи под ключ, строительство загородных домов в Смоленске, проекты домов, строительство дач, элитное жилье Смоленск, индивидуальное строительство, кирпичные дома, блочные дома, деревянные дома, эко-дома, таунхаусы Смоленск, строительство под ключ">
+
     
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <!-- Yandex.Metrika counter -->
