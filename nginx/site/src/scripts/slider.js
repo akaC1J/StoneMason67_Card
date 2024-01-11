@@ -10,6 +10,9 @@ export function createFullPageSlider() {
         scrollingSpeed: 1400,
         onLeave: function(origin, destination, direction){
             const slogan = document.getElementById('slogan');
+            if (!slogan) {
+                return;
+            }
             // Проверяем, если слайд первый, показываем слоган
             if(destination.index === 0){
                 slogan.classList.remove('fade-out');
